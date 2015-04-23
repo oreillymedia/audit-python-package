@@ -13,8 +13,8 @@ from setuptools import find_packages, setup
 version = '1.0.0'
 
 install_requires = [
+    'future',
     'pytest',
-    'six',
 ]
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
@@ -48,6 +48,7 @@ setup(
     description='Checks for compliance with current Python packaging best practices',
     url='http://github.com/safarijv/audit-python-package',
     packages=find_packages(exclude=['ez_setup']),
+    include_package_data=True,
     scripts=[],
     zip_safe=True,
     install_requires=install_requires,
