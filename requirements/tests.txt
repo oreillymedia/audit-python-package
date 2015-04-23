@@ -1,0 +1,27 @@
+# First the indirect dependencies:
+
+# pytest-cov -> cov-core
+coverage==3.7.1
+
+# pytest-cov -> pytest
+py==1.4.26
+
+# pytest-catchlog, pytest-cov
+pytest==2.7.0
+
+# pytest-cov
+cov-core==1.15.0
+
+# tox
+virtualenv==12.1.1
+
+# And then the direct dependencies:
+
+# Show log output for test failures
+pytest-catchlog==1.0
+
+# For code coverage statistics generation
+pytest-cov==1.8.1
+
+# For managing test environments
+tox==1.9.2

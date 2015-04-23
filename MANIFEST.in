@@ -1,0 +1,4 @@
+include README.rst
+include audit_python_package/data/.gitignore
+recursive-include audit_python_package/tests *.py
+recursive-include requirements *.txt
