@@ -5,6 +5,8 @@ audit-python-package Changelog
 ------------------
 * Added docs folder (and checks for it)
 * Added git hooks (and checks for them)
+* Added pytest-cov to core dependencies (to cope with --cov in addopts of
+  packages being audited)
 * Better check for *.pyc, *.pyd, and *.pyo files in .gitignore
 * Better check for the installation of test requirements in tox's [testenv]
 * Added utility functions for file content fixtures

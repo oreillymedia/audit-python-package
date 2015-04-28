@@ -14,7 +14,7 @@ version = '1.1.0'
 
 install_requires = [
     'future',
-    'pytest',
+    'pytest-cov',
 ]
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
