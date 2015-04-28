@@ -8,15 +8,13 @@ import os
 
 import pytest
 
+from audit_python_package import get_file_lines
+
 
 @pytest.fixture(scope='module')
 def manifest():
     """Fixture that provides a list of the entries in MANIFEST.in"""
-    if not os.path.exists('MANIFEST.in'):
-        return []
-    with open('MANIFEST.in', 'rU') as f:
-        lines = [line.strip() for line in f.readlines()]
-    return lines
+    return get_file_lines('MANIFEST.in')
 
 
 class TestManifest(object):

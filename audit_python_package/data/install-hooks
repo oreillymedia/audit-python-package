@@ -1,0 +1,24 @@
+from __future__ import print_function, unicode_literals
+
+import os
+
+
+def install_hooks():
+    script_path = os.path.realpath(__file__)
+    script_dir, script_name = os.path.split(script_path)
+    project_root = os.path.normpath(os.path.join(script_dir, '..'))
+    hook_dir = os.path.join(project_root, '.git', 'hooks')
+
+    for hook_name in os.listdir(script_dir):
+        if script_name != hook_name:
+            try:
+                source = os.path.join(script_dir, hook_name)
+                destination = os.path.join(hook_dir, hook_name)
+                os.symlink(source, destination)
+            except OSError:
+                print('%s hook already exists. Skipping.' % hook_name)
+            else:
+                print('Created %s git hook.' % hook_name)
+
+if __name__ == '__main__':
+    install_hooks()

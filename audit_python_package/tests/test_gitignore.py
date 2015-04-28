@@ -8,17 +8,15 @@ import os
 
 import pytest
 
-TEMPLATE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', '.gitignore'))
+from audit_python_package import DATA_DIRECTORY_PATH, get_file_lines
+
+TEMPLATE_PATH = os.path.join(DATA_DIRECTORY_PATH, '.gitignore')
 
 
 @pytest.fixture(scope='module')
 def gitignore():
     """Fixture for the lines in the .gitignore file"""
-    if not os.path.exists('.gitignore'):
-        return []
-    with open('.gitignore', 'rU') as f:
-        lines = [line.strip() for line in f.readlines()]
-    return lines
+    return get_file_lines('.gitignore')
 
 
 class TestGitignore(object):

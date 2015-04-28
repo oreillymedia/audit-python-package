@@ -8,30 +8,25 @@ import os
 
 import pytest
 
-from audit_python_package import VERSIONS
-
-
-def requirements_file_lines(path):
-    """Get a list of the lines from the requirements file at the specified path"""
-    if not os.path.exists(path):
-        return []
-    with open(path, 'rU') as f:
-        lines = [line.strip() for line in f.readlines()]
-    return lines
+from audit_python_package import VERSIONS, get_file_lines
 
 
 @pytest.fixture(scope='module')
 def base():
     """Parsed lines from requirements/base.txt"""
-    path = os.path.join('requirements', 'base.txt')
-    return requirements_file_lines(path)
+    return get_file_lines(os.path.join('requirements', 'base.txt'))
+
+
+@pytest.fixture(scope='module')
+def documentation():
+    """Parsed lines from requirements/documentation.txt"""
+    return get_file_lines(os.path.join('requirements', 'documentation.txt'))
 
 
 @pytest.fixture(scope='module')
 def tests():
     """Parsed lines from requirements/tests.txt"""
-    path = os.path.join('requirements', 'tests.txt')
-    return requirements_file_lines(path)
+    return get_file_lines(os.path.join('requirements', 'tests.txt'))
 
 
 def check_version(requirements, package_name, dependencies_list=None):
@@ -58,6 +53,34 @@ class TestRequirements(object):
     def test_pip_version(self, base):
         """pip should be pinned to our currently preferred version"""
         check_version(base, 'pip')
+
+    def test_documentation_exists(self):
+        """There should be a requirements/documentation.txt file for doc building dependencies"""
+        assert os.path.exists(os.path.join('requirements', 'documentation.txt'))
+
+    def test_docutils_version(self, documentation):
+        """docutils should be pinned to our currently preferred version"""
+        check_version(documentation, 'docutils')
+
+    def test_jinja2_version(self, documentation):
+        """Jinja2 should be pinned to our currently preferred version and appear after MarkupSafe"""
+        check_version(documentation, 'Jinja2', ['MarkupSafe'])
+
+    def test_markupsafe_version(self, documentation):
+        """MarkupSafe should be pinned to our currently preferred version"""
+        check_version(documentation, 'MarkupSafe')
+
+    def test_pygments_version(self, documentation):
+        """Pygments should be pinned to our currently preferred version"""
+        check_version(documentation, 'Pygments')
+
+    def test_sbo_sphinx_version(self, documentation):
+        """sbo-sphinx should be pinned to our currently preferred version and appear after Sphinx"""
+        check_version(documentation, 'sbo-sphinx', ['Sphinx'])
+
+    def test_sphinx_version(self, documentation):
+        """Sphinx should be pinned to our currently preferred version and appear after docutils, Jinja2, and Pygments"""
+        check_version(documentation, 'Sphinx', ['docutils', 'Jinja2', 'Pygments'])
 
     def test_tests_exists(self):
         """There should be a requirements/tests.txt file for testing dependencies"""
