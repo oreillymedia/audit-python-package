@@ -4,19 +4,17 @@
 
 from __future__ import unicode_literals
 
-from configparser import ConfigParser
 import os
 
 import pytest
+
+from audit_python_package import parse_config_file
 
 
 @pytest.fixture(scope='module')
 def setup_cfg():
     """Fixture containing the parsed content of setup.cfg"""
-    config = ConfigParser()
-    if os.path.exists('setup.cfg'):
-        config.read('setup.cfg')
-    return config
+    return parse_config_file('setup.cfg')
 
 
 class TestSetupCfg(object):

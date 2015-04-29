@@ -8,15 +8,13 @@ import os
 
 import pytest
 
+from audit_python_package import get_file_content
+
 
 @pytest.fixture(scope='module')
 def setup():
     """Fixture containing the text content of setup.py"""
-    if not os.path.exists('setup.py'):
-        return ''
-    with open('setup.py', 'r') as f:
-        content = f.read()
-    return content
+    return get_file_content('setup.py')
 
 
 class TestSetup(object):

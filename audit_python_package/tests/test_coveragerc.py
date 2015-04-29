@@ -4,19 +4,17 @@
 
 from __future__ import unicode_literals
 
-from configparser import ConfigParser
 import os
 
 import pytest
+
+from audit_python_package import parse_config_file
 
 
 @pytest.fixture(scope='module')
 def coveragerc():
     """Fixture for the parsed content of .coveragerc"""
-    config = ConfigParser()
-    if os.path.exists('.coveragerc'):
-        config.read('.coveragerc')
-    return config
+    return parse_config_file('.coveragerc')
 
 
 class TestCoveragerc(object):

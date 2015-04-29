@@ -10,11 +10,11 @@ from __future__ import unicode_literals
 import os
 from setuptools import find_packages, setup
 
-version = '1.0.0'
+version = '1.1.0'
 
 install_requires = [
     'future',
-    'pytest',
+    'pytest-cov',
 ]
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'

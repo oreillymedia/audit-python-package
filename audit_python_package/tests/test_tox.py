@@ -4,20 +4,18 @@
 
 from __future__ import unicode_literals
 
-from configparser import ConfigParser
 import os
 import re
 
 import pytest
 
+from audit_python_package import parse_config_file
+
 
 @pytest.fixture(scope='module')
 def tox_ini():
     """Fixture containing the parsed content of tox.ini"""
-    config = ConfigParser()
-    if os.path.exists('tox.ini'):
-        config.read('tox.ini')
-    return config
+    return parse_config_file('tox.ini')
 
 
 @pytest.fixture(scope='module')
@@ -75,7 +73,7 @@ class TestTox(object):
 
     def test_testenv_installs_testing_dependencies(self, testenv_commands):
         """There should be a command in testenv to install the testing dependencies from requirements/tests.txt"""
-        assert 'pip install --requirement requirements/tests.txt' in testenv_commands
+        assert any([re.match(r'pip .*install .*--requirement requirements/tests.txt.*', command) for command in testenv_commands])
 
     def test_testenv_uses_pytest(self, testenv_commands):
         """pytest should be the default test runner"""
