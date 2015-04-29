@@ -2,16 +2,29 @@
 
 # Indirect dependencies to pin for consistency
 
+# Sphinx -> Babel
+pytz==2015.2
+
 # sbo-sphinx -> Sphinx -> Jinja2
 MarkupSafe==0.23
 
+# Sphinx -> snowballstemmer; optional dependency for better performance
+PyStemmer==1.3.0
+
 # sbo-sphinx-> Sphinx
+Babel==1.3
 docutils==0.12
 Jinja2==2.7.3
 Pygments==2.0.2
+six==1.9.0
+snowballstemmer==1.2.0
 
 # sbo-sphinx
 Sphinx==1.3.1
+
+# Sphinx themes (circular dependencies of Sphinx)
+alabaster==0.7.3
+sphinx_rtd_theme==0.1.7
 
 # Direct dependencies
 

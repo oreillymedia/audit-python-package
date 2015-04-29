@@ -48,7 +48,7 @@ class TestGitHooks(object):
         """git-hooks/post-merge should be a directly executable Python script"""
         assert post_merge.startswith('#!/usr/bin/env python')
 
-    def test_post_merge_pyton_3_compatible(self, post_merge):
+    def test_post_merge_python_3_compatible(self, post_merge):
         """git-hooks/post-merge should work with either Python 2 or 3"""
         assert 'print_function' in post_merge
         assert 'unicode_literals' in post_merge

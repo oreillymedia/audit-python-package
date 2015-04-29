@@ -20,7 +20,11 @@ def base():
 @pytest.fixture(scope='module')
 def documentation():
     """Parsed lines from requirements/documentation.txt"""
-    return get_file_lines(os.path.join('requirements', 'documentation.txt'))
+    path = os.path.join('requirements', 'documentation.txt')
+    if not os.path.exists(path):
+        # Don't punish sbo-sphinx too much for having doc dependencies in base.txt
+        path = os.path.join('requirements', 'base.txt')
+    return get_file_lines(path)
 
 
 @pytest.fixture(scope='module')
@@ -29,13 +33,13 @@ def tests():
     return get_file_lines(os.path.join('requirements', 'tests.txt'))
 
 
-def check_version(requirements, package_name, dependencies_list=None):
+def check_version(requirements, package_name, dependencies_set=None):
     """Verify that the named package is pinned at the desired version and appears after its dependencies"""
     entry = '{}=={}'.format(package_name, VERSIONS[package_name])
     assert entry in requirements
-    if dependencies_list:
+    if dependencies_set:
         index = requirements.index(entry)
-        for dependency in dependencies_list:
+        for dependency in dependencies_set:
             assert any([entry.startswith('{}=='.format(dependency)) for entry in requirements[:index]])
 
 
@@ -58,13 +62,21 @@ class TestRequirements(object):
         """There should be a requirements/documentation.txt file for doc building dependencies"""
         assert os.path.exists(os.path.join('requirements', 'documentation.txt'))
 
+    def test_alabaster_version(self, documentation):
+        """alabaster should be pinned to our currently preferred version and appear after Sphinx"""
+        check_version(documentation, 'alabaster', {'Sphinx'})
+
+    def test_babel_version(self, documentation):
+        """Babel should be pinned to our currently preferred version and appear after pytz"""
+        check_version(documentation, 'Babel', {'pytz'})
+
     def test_docutils_version(self, documentation):
         """docutils should be pinned to our currently preferred version"""
         check_version(documentation, 'docutils')
 
     def test_jinja2_version(self, documentation):
         """Jinja2 should be pinned to our currently preferred version and appear after MarkupSafe"""
-        check_version(documentation, 'Jinja2', ['MarkupSafe'])
+        check_version(documentation, 'Jinja2', {'MarkupSafe'})
 
     def test_markupsafe_version(self, documentation):
         """MarkupSafe should be pinned to our currently preferred version"""
@@ -74,13 +86,33 @@ class TestRequirements(object):
         """Pygments should be pinned to our currently preferred version"""
         check_version(documentation, 'Pygments')
 
+    def test_pystemmer_version(self, documentation):
+        """PyStemmer should be pinned to our currently preferred version"""
+        check_version(documentation, 'PyStemmer')
+
+    def test_pytz_version(self, documentation):
+        """pytz should be pinned to our currently preferred version"""
+        check_version(documentation, 'pytz')
+
     def test_sbo_sphinx_version(self, documentation):
         """sbo-sphinx should be pinned to our currently preferred version and appear after Sphinx"""
-        check_version(documentation, 'sbo-sphinx', ['Sphinx'])
+        check_version(documentation, 'sbo-sphinx', {'Sphinx'})
+
+    def test_six_version(self, documentation):
+        """six should be pinned to our currently preferred version"""
+        check_version(documentation, 'six')
+
+    def test_snowballstemmer(self, documentation):
+        """snowballstemmer should be pinned to our currently preferred version"""
+        check_version(documentation, 'snowballstemmer')
+
+    def test_sphinx_rtd_theme(self, documentation):
+        """sphinx_rtd_theme should be pinned to our currently preferred version and appear after Sphinx"""
+        check_version(documentation, 'sphinx_rtd_theme', {'Sphinx'})
 
     def test_sphinx_version(self, documentation):
-        """Sphinx should be pinned to our currently preferred version and appear after docutils, Jinja2, and Pygments"""
-        check_version(documentation, 'Sphinx', ['docutils', 'Jinja2', 'Pygments'])
+        """Sphinx should be pinned to our currently preferred version and appear after Babel, docutils, Jinja2, Pygments, six, and snowballstemmer"""
+        check_version(documentation, 'Sphinx', {'Babel', 'docutils', 'Jinja2', 'Pygments', 'six', 'snowballstemmer'})
 
     def test_tests_exists(self):
         """There should be a requirements/tests.txt file for testing dependencies"""
@@ -92,7 +124,7 @@ class TestRequirements(object):
 
     def test_pytest_version(self, tests):
         """pytest should be pinned to our currently preferred version and appear after py"""
-        check_version(tests, 'pytest', ['py'])
+        check_version(tests, 'pytest', {'py'})
 
     def test_coverage_version(self, tests):
         """coverage should be pinned to our currently preferred version"""
@@ -100,19 +132,19 @@ class TestRequirements(object):
 
     def test_cov_core_version(self, tests):
         """cov-core should be pinned to our currently preferred version and appear after coverage"""
-        check_version(tests, 'cov-core', ['coverage'])
+        check_version(tests, 'cov-core', {'coverage'})
 
     def test_pytest_cov_version(self, tests):
         """pytest-cov should be pinned to our currently preferred version and appear after cov-core and pytest"""
-        check_version(tests, 'pytest-cov', ['pytest', 'cov-core'])
+        check_version(tests, 'pytest-cov', {'pytest', 'cov-core'})
 
     def test_pytest_catchlog_version(self, tests):
         """pytest-catchlog should be pinned to our currently preferred version and appear after pytest"""
-        check_version(tests, 'pytest-catchlog', ['pytest'])
+        check_version(tests, 'pytest-catchlog', {'pytest'})
 
     def test_tox_version(self, tests):
         """tox should be pinned to our currently preferred version and appear after py and virtualenv"""
-        check_version(tests, 'tox', ['py', 'virtualenv'])
+        check_version(tests, 'tox', {'py', 'virtualenv'})
 
     def test_virtualenv_version(self, tests):
         """virtualenv should be pinned to our currently preferred version"""
