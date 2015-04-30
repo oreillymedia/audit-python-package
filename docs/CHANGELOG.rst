@@ -1,6 +1,10 @@
 audit-python-package Changelog
 ==============================
 
+1.2.1 (2015-04-30)
+------------------
+Added data/requirements.txt to packae in order to fix broken version checks
+
 1.2.0 (2015-04-30)
 ------------------
 * Reformatted dependency versions mapping as a requirements.txt file that can
