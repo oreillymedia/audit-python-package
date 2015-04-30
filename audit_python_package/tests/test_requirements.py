@@ -58,6 +58,16 @@ class TestRequirements(object):
         """pip should be pinned to our currently preferred version"""
         check_version(base, 'pip')
 
+    def test_other_base_requirement_versions(self, base):
+        """All other dependencies declared in base.txt should match any versions we're explicitly trying to standardize on"""
+        for line in base:
+            if '==' in line and not line.startswith('#'):
+                package_name, version = tuple(line.split('=='))
+                if package_name in {'pip', 'setuptools'}:
+                    continue
+                if package_name in VERSIONS:
+                    assert version == VERSIONS[package_name]
+
     def test_documentation_exists(self):
         """There should be a requirements/documentation.txt file for doc building dependencies"""
         assert os.path.exists(os.path.join('requirements', 'documentation.txt'))
@@ -70,9 +80,17 @@ class TestRequirements(object):
         """Babel should be pinned to our currently preferred version and appear after pytz"""
         check_version(documentation, 'Babel', {'pytz'})
 
+    def test_bleach_version(self, documentation):
+        """bleach should be pinned to our currently preferred version and appear after html5lib and six"""
+        check_version(documentation, 'bleach', {'html5lib', 'six'})
+
     def test_docutils_version(self, documentation):
         """docutils should be pinned to our currently preferred version"""
         check_version(documentation, 'docutils')
+
+    def test_html5lib_version(self, documentation):
+        """html5lib should be pinned to our currently preferred version and appear after six"""
+        check_version(documentation, 'html5lib', {'six'})
 
     def test_jinja2_version(self, documentation):
         """Jinja2 should be pinned to our currently preferred version and appear after MarkupSafe"""
@@ -93,6 +111,10 @@ class TestRequirements(object):
     def test_pytz_version(self, documentation):
         """pytz should be pinned to our currently preferred version"""
         check_version(documentation, 'pytz')
+
+    def test_readme_version(self, documentation):
+        """readme should be pinned to our currently preferred version and appear after bleach, docutils, Pygments, and six"""
+        check_version(documentation, 'readme', {'bleach', 'docutils', 'Pygments', 'six'})
 
     def test_sbo_sphinx_version(self, documentation):
         """sbo-sphinx should be pinned to our currently preferred version and appear after Sphinx"""

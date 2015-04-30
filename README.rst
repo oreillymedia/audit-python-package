@@ -28,10 +28,20 @@ environment to its tox.ini::
 
     [testenv:audit]
     commands =
-        pip --trusted-host pypi.safaribooks.com --disable-pip-version-check install --allow-all-external --find-links http://pypi.safaribooks.com/packages/ --allow-unverified audit-python-package --upgrade audit-python-package
+        pip --trusted-host pypi.safaribooks.com --disable-pip-version-check install --allow-all-external --find-links http://pypi.safaribooks.com/packages/ --allow-unverified audit-python-package --upgrade --quiet audit-python-package readme
         py.test --pyargs audit_python_package
+        python setup.py check --restructuredtext --strict --metadata
 
 This gets the latest version of the packaging checks and then runs them.  Just
 run ``tox -e audit`` from the package's root directory and start fixing the
 issues that cause tests to fail (and updating any checks that no longer reflect
 how we want to package our code).
+
+Skipping Individual Checks
+--------------------------
+If some checks don't make sense for your particular package (but do for enough
+others that they're still worth enabling by default), you can specifically
+disable them via pytest's ``-k`` option::
+
+    py.test --pyargs audit_python_package -k "not test_documentation_exists and not test_sbo_sphinx_version"
+
