@@ -7,10 +7,11 @@ audit-python-package setup script
 
 from __future__ import unicode_literals
 
+import codecs
 import os
 from setuptools import find_packages, setup
 
-version = '1.1.0'
+version = '1.2.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 install_requires = [
     'future',
@@ -29,6 +30,9 @@ if on_rtd:
     requirements = parse_requirements(requirements_path, finder, session=session)
     install_requires.extend([str(r.req) for r in requirements])
 
+with codecs.open('README.rst', 'r', 'utf-8') as f:
+    long_description = f.read()
+
 setup(
     name='audit-python-package',
     version=version,
@@ -46,6 +50,7 @@ setup(
         'Topic :: Software Development',
     ],
     description='Checks for compliance with current Python packaging best practices',
+    long_description=long_description,
     url='http://github.com/safarijv/audit-python-package',
     packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,

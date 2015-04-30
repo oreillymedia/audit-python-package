@@ -24,6 +24,17 @@ class TestSetup(object):
         """There should be a setup.py in the project's root directory"""
         assert os.path.exists('setup.py')
 
+    def test_changelog_reminder(self, setup):
+        """There should be a reminder in setup.py to update docs/CHANGELOG.rst when the version changes"""
+        assert 'docs/CHANGELOG.rst' in setup
+
+    def test_long_description(self, setup):
+        """The package's long_description should be set to the content of README.rst"""
+        assert 'import codecs' in setup
+        assert "with codecs.open('README.rst', 'r', 'utf-8') as f:" in setup
+        assert 'long_description = f.read()' in setup
+        assert 'long_description=long_description,' in setup
+
     def test_read_the_docs(self, setup):
         """There should be explicit support for Read the Docs builds in setup.py"""
         assert 'READTHEDOCS' in setup

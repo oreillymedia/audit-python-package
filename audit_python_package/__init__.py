@@ -6,32 +6,6 @@ import os
 
 DATA_DIRECTORY_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data'))
 
-VERSIONS = {
-    'alabaster': '0.7.3',
-    'Babel': '1.3',
-    'cov-core': '1.15.0',
-    'coverage': '3.7.1',
-    'docutils': '0.12',
-    'Jinja2': '2.7.3',
-    'MarkupSafe': '0.23',
-    'pip': '6.1.1',
-    'py': '1.4.26',
-    'Pygments': '2.0.2',
-    'PyStemmer': '1.3.0',
-    'pytest': '2.7.0',
-    'pytest-catchlog': '1.0',
-    'pytest-cov': '1.8.1',
-    'pytz': '2015.2',
-    'setuptools': '15.0',
-    'sbo-sphinx': '2.0.3',
-    'six': '1.9.0',
-    'snowballstemmer': '1.2.0',
-    'Sphinx': '1.3.1',
-    'sphinx_rtd_theme': '0.1.7',
-    'tox': '1.9.2',
-    'virtualenv': '12.1.1',
-}
-
 
 def parse_config_file(path):
     """Get the parsed content of an INI-style config file (using ConfigParser)"""
@@ -58,3 +32,19 @@ def get_file_lines(path):
         return ''
     with codecs.open(path, 'r', 'utf-8') as f:
         return [line.strip() for line in f.readlines()]
+
+
+def _get_versions_dict():
+    """Parse the preferred versions list in data/requirements.txt into a
+    dictionary for ease of use in tests"""
+    path = os.path.join(DATA_DIRECTORY_PATH, 'requirements.txt')
+    lines = get_file_lines(path)
+    result = {}
+    for line in lines:
+        if '==' not in line:
+            continue
+        name, version = tuple(line.split('=='))
+        result[name] = version
+    return result
+
+VERSIONS = _get_versions_dict()
