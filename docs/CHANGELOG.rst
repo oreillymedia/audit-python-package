@@ -1,6 +1,13 @@
 audit-python-package Changelog
 ==============================
 
+1.3.0 (2015-05-06)
+------------------
+* Added check for reporting of lines not covered by tests
+* Switch post-merge check to recommend fetching setuptools & pip versions
+  from requirements/base.txt
+* Allow for pip parameters like "--trusted-host" in git-hooks/post-merge
+
 1.2.1 (2015-04-30)
 ------------------
 Added data/requirements.txt to packae in order to fix broken version checks

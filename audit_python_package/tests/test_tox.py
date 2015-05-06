@@ -62,6 +62,11 @@ class TestTox(object):
         assert tox_ini.has_option('pytest', 'addopts')
         assert re.search(r'--cov \w+', tox_ini.get('pytest', 'addopts'))
 
+    def test_coverage_term_missing(self, tox_ini):
+        """The pytest section should have an addopts entry which specifies that the line numbers for missing coverage should be reported"""
+        assert tox_ini.has_option('pytest', 'addopts')
+        assert '--cov-report term-missing' in tox_ini.get('pytest', 'addopts')
+
     def test_norecursedirs(self, tox_ini):
         """Directories which shouldn't be searched for tests should be specified"""
         assert tox_ini.has_option('pytest', 'norecursedirs')
