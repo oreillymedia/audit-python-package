@@ -60,17 +60,19 @@ class TestGitHooks(object):
         assert 'os.system("find . -name \'*pyc\' -delete")' in post_merge
 
     def test_post_merge_setuptools(self, post_merge):
-        """git-hooks/post-merge should install the correct version of setuptools"""
-        assert 'os.system("pip install setuptools=={}")'.format(VERSIONS['setuptools']) in post_merge
+        """git-hooks/post-merge should install the version of setuptools specified in requirements/base.txt"""
+        assert "match = re.search(r'^setuptools==([\d\.]+)$', requirements, re.MULTILINE)" in post_merge
+        assert "os.system('pip install setuptools=={}'.format(match.group(1)))" in post_merge
 
     def test_post_merge_pip(self, post_merge):
-        """git-hooks/post-merge should install the correct version of pip"""
-        assert 'os.system("pip install pip=={}")'.format(VERSIONS['pip']) in post_merge
+        """git-hooks/post-merge should install the version of pip specified in requirements/base.txt"""
+        assert "match = re.search(r'^pip==([\d\.]+)$', requirements, re.MULTILINE)" in post_merge
+        assert "os.system('pip install pip=={}'.format(match.group(1)))" in post_merge
 
     def test_post_merge_test_dependencies(self, post_merge):
         """git-hooks/post-merge should install the additional dependencies needed to run tests"""
-        assert re.search(r'pip install [^"\']*--requirement requirements/tests.txt', post_merge)
+        assert re.search(r'pip [^"\']*install [^"\']*--requirement requirements/tests.txt', post_merge)
 
     def test_post_merge_installs_package(self, post_merge):
         """git-hooks/post-merge should install the package contained in the git repository"""
-        assert re.search(r'pip install [^"\']*--editable ./', post_merge)
+        assert re.search(r'pip [^"\']*install [^"\']*--editable ./', post_merge)
