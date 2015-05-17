@@ -11,7 +11,7 @@ import codecs
 import os
 from setuptools import find_packages, setup
 
-version = '1.3.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '1.4.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 install_requires = [
     'future',
@@ -54,6 +54,9 @@ setup(
     url='http://github.com/safarijv/audit-python-package',
     packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,
+    entry_points={
+        'console_scripts': ['upload_requirements=audit_python_package.command_line:upload_requirements']
+    },
     scripts=[],
     zip_safe=True,
     install_requires=install_requires,

@@ -6,7 +6,7 @@
 six==1.9.0
 
 # readme -> bleach
-html5lib==0.9999
+html5lib==0.99999
 
 # readme
 bleach==1.4.1
@@ -16,7 +16,7 @@ docutils==0.12
 Pygments==2.0.2
 
 # Sphinx -> Babel
-pytz==2015.2
+pytz==2015.4
 
 # sbo-sphinx -> Sphinx -> Jinja2
 MarkupSafe==0.23
@@ -33,8 +33,8 @@ snowballstemmer==1.2.0
 Sphinx==1.3.1
 
 # Sphinx themes (circular dependencies of Sphinx)
-alabaster==0.7.3
-sphinx_rtd_theme==0.1.7
+alabaster==0.7.4
+sphinx_rtd_theme==0.1.8
 
 # Direct dependencies
 

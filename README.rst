@@ -64,15 +64,13 @@ REQUIRES_TOKEN environment variable, for example in ``.bash_profile``::
 This allows using the requires.io API from scripts in any number of repositories
 without needing to store the key in multiple insecure places.
 
-Next, add a new test environment to tox.ini::
+Next, run the ``upload_requirements`` script from the ``audit`` tox environment
+created above (be sure to run it from the project's root directory)::
 
-    [testenv:requirements]
-    passenv = REQUIRES_TOKEN
-    commands =
-        pip install --disable-pip-version-check --quiet requires.io==0.2.2
-        requires.io update-repo -r my-repo-name --private
-        requires.io update-branch -r my-repo-name -n `git rev-parse --abbrev-ref HEAD` requirements/*.txt
-    whitelist_externals = git
+    $ .tox/audit/bin/upload_requirements
 
-You can replace ``private`` with ``public`` if creating a dependencies report
-that should be visible to the general public.
+This creates (if it doesn't already exist) a private repository on requires.io
+and uploads ``setup.py`` and any ``requirements/*.txt`` files (other than
+``uninstall.txt``) for the current git branch.  If you do this on a temporary
+branch (for a pull request, etc.), you'll probably want to delete the branch's
+entry from the requires.io UI once the real branch has been deleted.

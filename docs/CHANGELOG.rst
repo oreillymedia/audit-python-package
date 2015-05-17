@@ -1,6 +1,10 @@
 audit-python-package Changelog
 ==============================
 
+1.4.0 (2015-05-18)
+------------------
+* Added upload_requirements script to easily track dependencies in requires.io
+
 1.3.0 (2015-05-06)
 ------------------
 * Added check for reporting of lines not covered by tests
