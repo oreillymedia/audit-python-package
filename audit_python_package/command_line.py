@@ -24,27 +24,58 @@ def upload_requirements():
     being run from the project's root directory (the parent of the
     ``requirements`` directory).
     """
+    verify_requires_token()
+    repository_name = get_repository_name()
+    update_repo(repository_name)
+    branch_name = get_branch_name()
+    paths = requirements_file_paths()
+    update_branch(repository_name, branch_name, paths)
+
+
+def verify_requires_token():
+    """Make sure that the REQUIRES_TOKEN environment variable has been set"""
     requires_token = os.getenv('REQUIRES_TOKEN')
     if not requires_token:
         print('REQUIRES_TOKEN environment variable must be set')
         sys.exit(1)
+
+
+def get_repository_name():
+    """Get the name of the repository from setup.py"""
     setup = get_file_content('setup.py')
     match = re.search(r'name=[\'"]([^\'"]+)[\'"]', setup)
     if not match:
         print('Could not find repository name in setup.py')
         sys.exit(1)
-    repository_name = match.group(1)
+    return match.group(1)
+
+
+def get_branch_name():
+    """Get the name of the current git branch"""
     try:
-        branch_name = check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], universal_newlines=True).strip()
+        return check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], universal_newlines=True).strip()
     except Exception as e:
         print('Error getting current git branch: {}'.format(e))
         sys.exit(1)
+
+
+def requirements_file_paths():
+    """List the paths relative to the project root of all requirements files
+    that should be uploaded to requires.io.  Excludes
+    ``requirements/uninstall.txt``, but includes ``setup.py`` (mainly to work
+    around a bug in requires.io where the relative paths are submitted
+    incorrectly if all submitted files are in the same subdirectory)."""
     paths = ['setup.py']
     for filename in os.listdir('requirements'):
         if len(filename) < 5 or filename[-4:] != '.txt' or filename == 'uninstall.txt':
             continue
         path = os.path.join('requirements', filename)
         paths.append(path)
+    return paths
+
+
+def update_repo(repository_name):
+    """Create or update a private repository entry in requires.io"""
     try:
         output = check_output(['requires.io', 'update-repo', '--repository', repository_name, '--private'],
                               stderr=STDOUT, universal_newlines=True)
@@ -53,6 +84,11 @@ def upload_requirements():
         print('Unable to create or update {} on requires.io'.format(repository_name))
         print(e.output)
         sys.exit(1)
+
+
+def update_branch(repository_name, branch_name, paths):
+    """Upload the requirements files for the specified git branch to requires.io
+    for analysis"""
     args = ['requires.io', 'update-branch', '--repository', repository_name, '--name', branch_name]
     for path in paths:
         args.append(path)
