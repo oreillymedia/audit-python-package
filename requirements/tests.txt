@@ -17,6 +17,9 @@ virtualenv==12.1.1
 
 # And then the direct dependencies:
 
+# For mocking functions with side effects
+mock==1.0.1
+
 # Show log output for test failures
 pytest-catchlog==1.0
 
