@@ -3,4 +3,5 @@ include audit_python_package/data/.gitignore
 include audit_python_package/data/install-hooks
 include audit_python_package/data/requirements.txt
 recursive-include audit_python_package/tests *.py
+exclude audit_python_package/tests/test_upload_requirements.py
 recursive-include requirements *.txt
