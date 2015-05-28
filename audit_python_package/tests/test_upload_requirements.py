@@ -36,8 +36,8 @@ def test_get_repository_name():
 def test_requirements_file_paths():
     """requirements_file_paths() should return the correct set of files to upload to requires.io"""
     paths = requirements_file_paths()
-    assert len(paths) == 4
-    assert 'setup.py' in paths
+    assert len(paths) == 3
+    assert 'setup.py' not in paths
     for filename in ['base.txt', 'documentation.txt', 'tests.txt']:
         assert os.path.join('requirements', filename) in paths
 

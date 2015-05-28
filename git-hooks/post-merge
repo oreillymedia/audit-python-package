@@ -43,9 +43,9 @@ if virtual_env:
     with codecs.open('requirements/base.txt', 'r', 'utf-8') as f:
         requirements = f.read()
     match = re.search(r'^setuptools==([\d\.]+)$', requirements, re.MULTILINE)
-    os.system('pip install setuptools=={}'.format(match.group(1)))
+    os.system('pip install --disable-pip-version-check setuptools=={}'.format(match.group(1)))
     match = re.search(r'^pip==([\d\.]+)$', requirements, re.MULTILINE)
-    os.system('pip install pip=={}'.format(match.group(1)))
+    os.system('pip install --disable-pip-version-check pip=={}'.format(match.group(1)))
 
     # Install other dependencies
     os.system("pip install --disable-pip-version-check --requirement requirements/base.txt")

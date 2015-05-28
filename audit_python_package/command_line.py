@@ -62,10 +62,8 @@ def get_branch_name():
 def requirements_file_paths():
     """List the paths relative to the project root of all requirements files
     that should be uploaded to requires.io.  Excludes
-    ``requirements/uninstall.txt``, but includes ``setup.py`` (mainly to work
-    around a bug in requires.io where the relative paths are submitted
-    incorrectly if all submitted files are in the same subdirectory)."""
-    paths = ['setup.py']
+    ``requirements/uninstall.txt``."""
+    paths = []
     for filename in os.listdir('requirements'):
         if len(filename) < 5 or filename[-4:] != '.txt' or filename == 'uninstall.txt':
             continue

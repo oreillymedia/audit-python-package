@@ -4,16 +4,16 @@
 coverage==3.7.1
 
 # pytest-cov -> pytest
-py==1.4.27
+py==1.4.28
 
 # pytest-catchlog, pytest-cov
-pytest==2.7.0
+pytest==2.7.1
 
 # pytest-cov
 cov-core==1.15.0
 
 # tox
-virtualenv==12.1.1
+virtualenv==13.0.1
 
 # And then the direct dependencies:
 

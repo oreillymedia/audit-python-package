@@ -1,6 +1,12 @@
 audit-python-package Changelog
 ==============================
 
+1.4.1 (2015-05-28)
+------------------
+* Updated several recommended versions
+* Removed setup.py from files uploaded to requires.io (the bug in their library
+  that required it has been fixed)
+
 1.4.0 (2015-05-18)
 ------------------
 * Added upload_requirements script to easily track dependencies in requires.io
