@@ -67,7 +67,9 @@ without needing to store the key in multiple insecure places.
 Next, run the ``upload_requirements`` script from the ``audit`` tox environment
 created above (be sure to run it from the project's root directory)::
 
-    $ .tox/audit/bin/upload_requirements
+    $ . .tox/audit/bin/activate
+    $ upload_requirements
+    $ deactivate
 
 This creates (if it doesn't already exist) a private repository on requires.io
 and uploads ``setup.py`` and any ``requirements/*.txt`` files (other than
