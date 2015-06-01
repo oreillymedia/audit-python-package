@@ -47,7 +47,8 @@ def get_repository_name():
     if not match:
         print('Could not find repository name in setup.py')
         sys.exit(1)
-    return match.group(1)
+    else:
+        return match.group(1)
 
 
 def get_branch_name():
@@ -56,6 +57,7 @@ def get_branch_name():
         return check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], universal_newlines=True).strip()
     except Exception as e:
         print('Error getting current git branch: {}'.format(e))
+        print(e.output)
         sys.exit(1)
 
 
