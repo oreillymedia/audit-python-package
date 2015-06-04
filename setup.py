@@ -11,11 +11,12 @@ import codecs
 import os
 from setuptools import find_packages, setup
 
-version = '1.4.1'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '1.4.2'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 install_requires = [
     'future',
     'pytest-cov',
+    'requires.io==0.2.4'
 ]
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
