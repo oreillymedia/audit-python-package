@@ -7,9 +7,7 @@
 
 from __future__ import print_function, unicode_literals
 
-import codecs
 import os
-import re
 import shlex
 import subprocess
     
@@ -39,15 +37,7 @@ if virtual_env:
     print('Deleting .pyc files in virtualenv')
     os.system("find %s -name '*pyc' -delete" % virtual_env)
 
-    # Install the currently recommended setuptools and pip versions
-    with codecs.open('requirements/base.txt', 'r', 'utf-8') as f:
-        requirements = f.read()
-    match = re.search(r'^setuptools==([\d\.]+)$', requirements, re.MULTILINE)
-    os.system('pip install setuptools=={}'.format(match.group(1)))
-    match = re.search(r'^pip==([\d\.]+)$', requirements, re.MULTILINE)
-    os.system('pip install pip=={}'.format(match.group(1)))
-
-    # Install other dependencies
+    os.system('requirements/clean_up_requirements.py')
     os.system("pip install --disable-pip-version-check --requirement requirements/base.txt")
     os.system("pip install --disable-pip-version-check --requirement requirements/tests.txt")
     os.system("pip install --disable-pip-version-check --editable ./")
