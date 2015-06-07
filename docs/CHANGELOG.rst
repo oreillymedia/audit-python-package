@@ -6,7 +6,8 @@ audit-python-package Changelog
 * Added tests for requirements/clean_up_requirements.py and usage of it in
   git-hooks/post-merge and tox.ini
 * Added tests for requirements/uninstall.txt
-* Upgraded setuptools, pip, tox, and virtualenv recommended versions
+* Upgraded setuptools, pip, pytest-catchlog, tox, and virtualenv recommended
+  versions
 
 1.4.2 (2015-05-29)
 ------------------

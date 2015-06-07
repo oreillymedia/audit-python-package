@@ -21,7 +21,7 @@ virtualenv==13.0.3
 mock==1.0.1
 
 # Show log output for test failures
-pytest-catchlog==1.0
+pytest-catchlog==1.1
 
 # For code coverage statistics generation
 pytest-cov==1.8.1
