@@ -75,4 +75,7 @@ This creates (if it doesn't already exist) a private repository on requires.io
 and uploads ``setup.py`` and any ``requirements/*.txt`` files (other than
 ``uninstall.txt``) for the current git branch.  If you do this on a temporary
 branch (for a pull request, etc.), you'll probably want to delete the branch's
-entry from the requires.io UI once the real branch has been deleted.
+entry from the requires.io UI once the real branch has been deleted.  To do
+this, run the following command with the ``audit`` virtualenv active::
+
+    requires.io delete-branch -r <repository_name> -n <branch_name>
