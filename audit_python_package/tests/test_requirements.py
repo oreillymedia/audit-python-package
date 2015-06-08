@@ -33,6 +33,12 @@ def tests():
     return get_file_lines(os.path.join('requirements', 'tests.txt'))
 
 
+@pytest.fixture(scope='module')
+def uninstall():
+    """Parsed lines from requirements/uninstall.txt"""
+    return get_file_lines(os.path.join('requirements', 'uninstall.txt'))
+
+
 def check_version(requirements, package_name, dependencies_set=None):
     """Verify that the named package is pinned at the desired version and appears after its dependencies"""
     entry = '{}=={}'.format(package_name, VERSIONS[package_name])
@@ -171,3 +177,11 @@ class TestRequirements(object):
     def test_virtualenv_version(self, tests):
         """virtualenv should be pinned to our currently preferred version"""
         check_version(tests, 'virtualenv')
+
+    def test_uninstall_exists(self):
+        """There should be a requirements/uninstall.txt file for listing previous dependencies to uninstall"""
+        assert os.path.exists(os.path.join('requirements', 'uninstall.txt'))
+
+    def test_uninstall_explanation(self, uninstall):
+        """requirements/uninstall.txt should include a comment explaining its usage"""
+        assert uninstall[0] == '# Packages which were once dependencies, but should now be removed if present.'

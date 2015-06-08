@@ -84,6 +84,14 @@ class TestTox(object):
         """There should be a "deps" line for dependencies under [testenv]"""
         assert tox_ini.has_option('testenv', 'deps')
 
+    def test_testenv_cleans_up_requirements(self, testenv_commands):
+        """There should be a command in testenv to run requirements/clean_up_requirements.py"""
+        assert '{toxinidir}/requirements/clean_up_requirements.py' in testenv_commands
+
+    def test_testenv_installs_core_dependencies(self, testenv_commands):
+        """There should be a command in testenv to install the core dependencies from base.txt or cpython2.txt in the requirements directory"""
+        assert any([re.match(r'pip .*install .*--requirement requirements/(base|cpython2).txt.*', command) for command in testenv_commands])
+
     def test_testenv_installs_testing_dependencies(self, testenv_commands):
         """There should be a command in testenv to install the testing dependencies from requirements/tests.txt"""
         assert any([re.match(r'pip .*install .*--requirement requirements/tests.txt.*', command) for command in testenv_commands])
@@ -99,6 +107,18 @@ class TestTox(object):
     def test_docs_section_exists(self, tox_ini):
         """There should be a [testenv:docs] section in tox.ini"""
         assert tox_ini.has_section('testenv:docs')
+
+    def test_docs_cleans_up_requirements(self, docs_commands):
+        """The docs test environment should run requirements/clean_up_requirements.py"""
+        assert '{toxinidir}/requirements/clean_up_requirements.py' in docs_commands
+
+    def test_docs_installs_core_dependencies(self, docs_commands):
+        """The docs test environment should install the core dependencies from base.txt or cpython2.txt in the requirements directory"""
+        assert any([re.match(r'pip .*install .*--requirement requirements/(base|cpython2).txt.*', command) for command in docs_commands])
+
+    def test_docs_installs_documentation_dependencies(self, docs_commands):
+        """The docs test environment should install the doc generation dependencies from requirements/documentation.txt"""
+        assert any([re.match(r'pip .*install .*--requirement requirements/documentation.txt.*', command) for command in docs_commands])
 
     def test_docs_check_readme(self, docs_commands):
         """The docs test environment should include a validation of README.rst"""

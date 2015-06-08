@@ -1,8 +1,8 @@
 # Core dependencies common to all Python interpreters
 
-# Python packaging utilities; if these change, also update git-hooks/post-merge
-setuptools==16.0
-pip==7.0.1
+# Python packaging utilities
+setuptools==17.0
+pip==7.0.3
 
 # Indirect dependencies first, exact versions for consistency
 
