@@ -1,6 +1,23 @@
 audit-python-package Changelog
 ==============================
 
+1.6.0 (2015-06-25)
+------------------
+* Added check for the presence of include_package_data=True and the absence of
+  package_data in setup.py
+* Updated checks for tox dependencies to reflect the fact that it now depends
+  on pluggy
+* Added checks for ipdb and its dependencies being in requirements/tests.txt
+* Don't choke on environment markers when parsing requirements files
+* Recurse through included requirements files when looking for a package
+  specification in a requirements file
+* Added checks to verify that cpython2.txt, pypy.txt, and cpython3.text
+  requirements files are not present (environment markers in requirements
+  files are a better way to handle this)
+* Added check for an invalid 'Private :: Do Not Upload' classifier in setup.py
+  to prevent accidental release of private packages to the public PyPI server
+* Updated recommended package versions to reflect recent releases
+
 1.5.0 (2015-06-05)
 ------------------
 * Added tests for requirements/clean_up_requirements.py and usage of it in
@@ -32,7 +49,7 @@ Added requires.io requirement (0.2.4) to setup.py.
 
 1.2.1 (2015-04-30)
 ------------------
-Added data/requirements.txt to packae in order to fix broken version checks
+Added data/requirements.txt to package in order to fix broken version checks
 
 1.2.0 (2015-04-30)
 ------------------

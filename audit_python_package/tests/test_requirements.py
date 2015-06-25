@@ -8,13 +8,13 @@ import os
 
 import pytest
 
-from audit_python_package import VERSIONS, get_file_lines
+from audit_python_package import VERSIONS, get_file_lines, get_requirement_lines
 
 
 @pytest.fixture(scope='module')
 def base():
     """Parsed lines from requirements/base.txt"""
-    return get_file_lines(os.path.join('requirements', 'base.txt'))
+    return get_requirement_lines(os.path.join('requirements', 'base.txt'))
 
 
 @pytest.fixture(scope='module')
@@ -24,13 +24,13 @@ def documentation():
     if not os.path.exists(path):
         # Don't punish sbo-sphinx too much for having doc dependencies in base.txt
         path = os.path.join('requirements', 'base.txt')
-    return get_file_lines(path)
+    return get_requirement_lines(path)
 
 
 @pytest.fixture(scope='module')
 def tests():
     """Parsed lines from requirements/tests.txt"""
-    return get_file_lines(os.path.join('requirements', 'tests.txt'))
+    return get_requirement_lines(os.path.join('requirements', 'tests.txt'))
 
 
 @pytest.fixture(scope='module')
@@ -68,7 +68,11 @@ class TestRequirements(object):
         """All other dependencies declared in base.txt should match any versions we're explicitly trying to standardize on"""
         for line in base:
             if '==' in line and not line.startswith('#'):
+                if ';' in line:
+                    line = line.split(';')[0].strip()
                 package_name, version = tuple(line.split('=='))
+                package_name = package_name.strip()
+                version = version.strip()
                 if package_name in {'pip', 'setuptools'}:
                     continue
                 if package_name in VERSIONS:
@@ -146,9 +150,25 @@ class TestRequirements(object):
         """There should be a requirements/tests.txt file for testing dependencies"""
         assert os.path.exists(os.path.join('requirements', 'tests.txt'))
 
+    def test_gnureadline_version(self, tests):
+        """gnureadline should be pinned to our currently preferred version"""
+        check_version(tests, 'gnureadline')
+
+    def test_ipdb_version(self, tests):
+        """ipdb should be pinned to our currently preferred version and appear after ipython"""
+        check_version(tests, 'ipdb', {'ipython'})
+
+    def test_ipython_version(self, tests):
+        """ipython should be pinned to our currently preferred version and appear after gnureadline"""
+        check_version(tests, 'ipython', {'gnureadline'})
+
     def test_py_version(self, tests):
         """py should be pinned to our currently preferred version"""
         check_version(tests, 'py')
+
+    def test_pluggy_version(self, tests):
+        """pluggy should be pinned to our currently preferred version"""
+        check_version(tests, 'pluggy')
 
     def test_pytest_version(self, tests):
         """pytest should be pinned to our currently preferred version and appear after py"""
@@ -171,8 +191,8 @@ class TestRequirements(object):
         check_version(tests, 'pytest-catchlog', {'pytest'})
 
     def test_tox_version(self, tests):
-        """tox should be pinned to our currently preferred version and appear after py and virtualenv"""
-        check_version(tests, 'tox', {'py', 'virtualenv'})
+        """tox should be pinned to our currently preferred version and appear after pluggy, py, and virtualenv"""
+        check_version(tests, 'tox', {'pluggy', 'py', 'virtualenv'})
 
     def test_virtualenv_version(self, tests):
         """virtualenv should be pinned to our currently preferred version"""
@@ -185,3 +205,15 @@ class TestRequirements(object):
     def test_uninstall_explanation(self, uninstall):
         """requirements/uninstall.txt should include a comment explaining its usage"""
         assert uninstall[0] == '# Packages which were once dependencies, but should now be removed if present.'
+
+    def test_cpython2_does_not_exist(self):
+        """There should not be a requirements/cpython2.txt file, use environment markers instead"""
+        assert not os.path.exists(os.path.join('requirements', 'cpython2.txt'))
+
+    def test_cpython3_does_not_exist(self):
+        """There should not be a requirements/cpython3.txt file, use environment markers instead"""
+        assert not os.path.exists(os.path.join('requirements', 'cpython3.txt'))
+
+    def test_pypy_does_not_exist(self):
+        """There should not be a requirements/pypy.txt file, use environment markers instead"""
+        assert not os.path.exists(os.path.join('requirements', 'pypy.txt'))

@@ -29,9 +29,31 @@ def get_file_lines(path):
     Strips leading and trailing whitespace from each line.
     Used for pytest fixtures."""
     if not os.path.exists(path):
-        return ''
+        return []
     with codecs.open(path, 'r', 'utf-8') as f:
         return [line.strip() for line in f.readlines()]
+
+
+def get_requirement_lines(path):
+    """Get the lines from a requirements file (or any other requirements file
+    it includes) which contain a requirement specification."""
+    lines = get_file_lines(path)
+    result = []
+    for line in lines:
+        if line.startswith('#'):
+            continue
+        if line.startswith('-r') or line.startswith('--requirement'):
+            base_dir = os.path.dirname(path)
+            sub_path = os.path.join(base_dir, line.split()[-1])
+            result.extend(get_requirement_lines(sub_path))
+            continue
+        if '==' not in line:
+            continue
+        if ';' in line:
+            # Strip off the environment marker
+            line = line.split(';')[0].strip()
+        result.append(line)
+    return result
 
 
 def _get_versions_dict():
@@ -43,8 +65,11 @@ def _get_versions_dict():
     for line in lines:
         if '==' not in line:
             continue
+        if ';' in line:
+            # Strip off the environment marker
+            line = line.split(';')[0].strip()
         name, version = tuple(line.split('=='))
-        result[name] = version
+        result[name.strip()] = version.strip()
     return result
 
 VERSIONS = _get_versions_dict()

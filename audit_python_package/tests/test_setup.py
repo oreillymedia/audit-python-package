@@ -5,6 +5,7 @@
 from __future__ import unicode_literals
 
 import os
+import re
 
 import pytest
 
@@ -28,12 +29,24 @@ class TestSetup(object):
         """There should be a reminder in setup.py to update docs/CHANGELOG.rst when the version changes"""
         assert 'docs/CHANGELOG.rst' in setup
 
+    def test_include_package_data(self, setup):
+        """include_package_data should be set to True in setup.py (to let MANIFEST.in define the data to include)"""
+        assert 'include_package_data=True' in setup
+
     def test_long_description(self, setup):
         """The package's long_description should be set to the content of README.rst"""
         assert 'import codecs' in setup
         assert "with codecs.open('README.rst', 'r', 'utf-8') as f:" in setup
         assert 'long_description = f.read()' in setup
         assert 'long_description=long_description,' in setup
+
+    def test_no_package_data(self, setup):
+        """package_data should not be set in setup.py (use MANIFEST.in instead)"""
+        assert not re.search(r'\spackage_data', setup)
+
+    def test_prevent_pypi_upload(self, setup):
+        """There should be an invalid "Private :: Do Not Upload" classifier in private packages to prevent accidental uploads to PyPI"""
+        assert 'Private :: Do Not Upload' in setup
 
     def test_read_the_docs(self, setup):
         """There should be explicit support for Read the Docs builds in setup.py"""
