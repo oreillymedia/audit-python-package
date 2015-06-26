@@ -67,16 +67,11 @@ class TestRequirements(object):
     def test_other_base_requirement_versions(self, base):
         """All other dependencies declared in base.txt should match any versions we're explicitly trying to standardize on"""
         for line in base:
-            if '==' in line and not line.startswith('#'):
-                if ';' in line:
-                    line = line.split(';')[0].strip()
-                package_name, version = tuple(line.split('=='))
-                package_name = package_name.strip()
-                version = version.strip()
-                if package_name in {'pip', 'setuptools'}:
-                    continue
-                if package_name in VERSIONS:
-                    assert version == VERSIONS[package_name]
+            package_name, version = (part.strip() for part in line.split('=='))
+            if package_name in {'pip', 'setuptools'}:
+                continue
+            if package_name in VERSIONS:
+                assert version == VERSIONS[package_name]
 
     def test_documentation_exists(self):
         """There should be a requirements/documentation.txt file for doc building dependencies"""
