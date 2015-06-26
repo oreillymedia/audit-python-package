@@ -72,7 +72,7 @@ created above (be sure to run it from the project's root directory)::
     $ deactivate
 
 This creates (if it doesn't already exist) a private repository on requires.io
-and uploads ``setup.py`` and any ``requirements/*.txt`` files (other than
+and uploads any ``requirements/*.txt`` files (other than
 ``uninstall.txt``) for the current git branch.  If you do this on a temporary
 branch (for a pull request, etc.), you'll probably want to delete the branch's
 entry from the requires.io UI once the real branch has been deleted.  To do

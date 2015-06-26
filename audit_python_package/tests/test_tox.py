@@ -89,8 +89,8 @@ class TestTox(object):
         assert '{toxinidir}/requirements/clean_up_requirements.py' in testenv_commands
 
     def test_testenv_installs_core_dependencies(self, testenv_commands):
-        """There should be a command in testenv to install the core dependencies from base.txt or cpython2.txt in the requirements directory"""
-        assert any([re.match(r'pip .*install .*--requirement requirements/(base|cpython2).txt.*', command) for command in testenv_commands])
+        """There should be a command in testenv to install the core dependencies from base.txt in the requirements directory"""
+        assert any([re.match(r'pip .*install .*--requirement requirements/base.txt.*', command) for command in testenv_commands])
 
     def test_testenv_installs_testing_dependencies(self, testenv_commands):
         """There should be a command in testenv to install the testing dependencies from requirements/tests.txt"""
@@ -113,8 +113,8 @@ class TestTox(object):
         assert '{toxinidir}/requirements/clean_up_requirements.py' in docs_commands
 
     def test_docs_installs_core_dependencies(self, docs_commands):
-        """The docs test environment should install the core dependencies from base.txt or cpython2.txt in the requirements directory"""
-        assert any([re.match(r'pip .*install .*--requirement requirements/(base|cpython2).txt.*', command) for command in docs_commands])
+        """The docs test environment should install the core dependencies from base.txt in the requirements directory"""
+        assert any([re.match(r'pip .*install .*--requirement requirements/base.txt.*', command) for command in docs_commands])
 
     def test_docs_installs_documentation_dependencies(self, docs_commands):
         """The docs test environment should install the doc generation dependencies from requirements/documentation.txt"""

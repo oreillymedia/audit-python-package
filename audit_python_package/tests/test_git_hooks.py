@@ -65,7 +65,7 @@ class TestGitHooks(object):
 
     def test_post_merge_base_dependencies(self, post_merge):
         """git-hooks/post-merge should install the package's core dependencies"""
-        assert re.search(r'pip [^"\']*install [^"\']*--requirement requirements/(base|cpython2).txt', post_merge)
+        assert re.search(r'pip [^"\']*install [^"\']*--requirement requirements/base.txt', post_merge)
 
     def test_post_merge_test_dependencies(self, post_merge):
         """git-hooks/post-merge should install the additional dependencies needed to run tests"""

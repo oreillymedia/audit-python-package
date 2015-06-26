@@ -7,7 +7,7 @@
 Utility to uninstall any installed packages listed in uninstall.txt.  Can't use
 ``pip uninstall -r`` because it aborts after the first package in the list
 which isn't currently installed.  Also installs the currently-recommended
-versions of setuptools and pip from requirements/nest.txt (to avoid needing
+versions of setuptools and pip from requirements/base.txt (to avoid needing
 to replicate this logic in git-hooks/post-merge, tox.ini, quilter, etc.)
 """
 

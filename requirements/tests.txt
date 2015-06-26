@@ -1,21 +1,31 @@
 # First the indirect dependencies:
 
+# ipdb -> ipython
+gnureadline==6.3.3
+
+# ipdb
+ipython==3.2.0
+
 # pytest-cov -> cov-core
 coverage==3.7.1
 
 # pytest-cov -> pytest
-py==1.4.28
+py==1.4.29
 
 # pytest-catchlog, pytest-cov
-pytest==2.7.1
+pytest==2.7.2
 
 # pytest-cov
 cov-core==1.15.0
 
 # tox
+pluggy==0.3.0
 virtualenv==13.0.3
 
 # And then the direct dependencies:
+
+# A better debugger
+ipdb==0.8.1
 
 # For mocking functions with side effects
 mock==1.0.1
@@ -27,4 +37,4 @@ pytest-catchlog==1.1
 pytest-cov==1.8.1
 
 # For managing test environments
-tox==2.0.2
+tox==2.1.1
