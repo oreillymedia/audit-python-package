@@ -49,9 +49,7 @@ def get_requirement_lines(path):
             continue
         if '==' not in line:
             continue
-        if ';' in line:
-            # Strip off the environment marker
-            line = line.split(';')[0].strip()
+        line = line.partition(';')[0].strip()
         result.append(line)
     return result
 
@@ -60,16 +58,11 @@ def _get_versions_dict():
     """Parse the preferred versions list in data/requirements.txt into a
     dictionary for ease of use in tests"""
     path = os.path.join(DATA_DIRECTORY_PATH, 'requirements.txt')
-    lines = get_file_lines(path)
+    lines = get_requirement_lines(path)
     result = {}
     for line in lines:
-        if '==' not in line:
-            continue
-        if ';' in line:
-            # Strip off the environment marker
-            line = line.split(';')[0].strip()
-        name, version = tuple(line.split('=='))
-        result[name.strip()] = version.strip()
+        name, version = (part.strip() for part in line.split('=='))
+        result[name] = version
     return result
 
 VERSIONS = _get_versions_dict()
