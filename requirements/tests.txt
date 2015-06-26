@@ -1,7 +1,7 @@
 # First the indirect dependencies:
 
 # ipdb -> ipython
-gnureadline==6.3.3
+gnureadline==6.3.3; sys_platform == 'darwin'
 
 # ipdb
 ipython==3.2.0
