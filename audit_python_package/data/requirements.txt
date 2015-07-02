@@ -10,9 +10,9 @@ ipdb==0.8.1
 ipython==3.2.0
 Jinja2==2.7.3
 MarkupSafe==0.23
-pip==7.0.3
+pip==7.1.0
 pluggy==0.3.0
-py==1.4.29
+py==1.4.30
 Pygments==2.0.2
 PyStemmer==1.3.0
 pytest==2.7.2
@@ -20,11 +20,11 @@ pytest-catchlog==1.1
 pytest-cov==1.8.1
 pytz==2015.4
 readme==0.5.1
-setuptools==17.0
-sbo-sphinx==2.1.0
+setuptools==18.0.1
+sbo-sphinx==2.1.1
 six==1.9.0
 snowballstemmer==1.2.0
 Sphinx==1.3.1
 sphinx_rtd_theme==0.1.8
 tox==2.1.1
-virtualenv==13.0.3
+virtualenv==13.1.0

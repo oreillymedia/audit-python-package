@@ -9,7 +9,7 @@ import re
 
 import pytest
 
-from audit_python_package import DATA_DIRECTORY_PATH, get_file_content, VERSIONS
+from audit_python_package import DATA_DIRECTORY_PATH, get_file_content
 
 
 @pytest.fixture(scope='module')
