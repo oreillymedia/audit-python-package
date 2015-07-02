@@ -14,6 +14,7 @@ from audit_python_package import get_file_content
 
 SCRIPT_PATH = os.path.join('requirements', 'clean_up_requirements.py')
 
+
 @pytest.fixture(scope='module')
 def clean_up_requirements():
     """Fixture containing the text content of requirements/clean_up_requirements.py"""

@@ -41,10 +41,10 @@ def uninstall():
 
 def check_version(requirements, package_name, dependencies_set=None):
     """Verify that the named package is pinned at the desired version and appears after its dependencies"""
-    entry = '{}=={}'.format(package_name, VERSIONS[package_name])
-    assert entry in requirements
+    requirement = '{}=={}'.format(package_name, VERSIONS[package_name])
+    assert requirement in requirements
     if dependencies_set:
-        index = requirements.index(entry)
+        index = requirements.index(requirement)
         for dependency in dependencies_set:
             assert any([entry.startswith('{}=='.format(dependency)) for entry in requirements[:index]])
 

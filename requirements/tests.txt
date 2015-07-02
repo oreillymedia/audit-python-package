@@ -10,7 +10,7 @@ ipython==3.2.0
 coverage==3.7.1
 
 # pytest-cov -> pytest
-py==1.4.29
+py==1.4.30
 
 # pytest-catchlog, pytest-cov
 pytest==2.7.2
@@ -20,7 +20,7 @@ cov-core==1.15.0
 
 # tox
 pluggy==0.3.0
-virtualenv==13.0.3
+virtualenv==13.1.0
 
 # And then the direct dependencies:
 

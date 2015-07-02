@@ -1,6 +1,12 @@
 audit-python-package Changelog
 ==============================
 
+1.6.1 (2015-07-02)
+------------------
+* Updated recommended versions of pip, py, setuptools, sbo-sphinx, and
+  virtualenv
+* Added tox environment for flake8 checks, fixed reported issues
+
 1.6.0 (2015-06-25)
 ------------------
 * Added check for the presence of include_package_data=True and the absence of
