@@ -1,6 +1,13 @@
 audit-python-package Changelog
 ==============================
 
+1.6.2 (2015-07-13)
+------------------
+* Check to makes sure that if setup.py's install_requires is derived from a
+  requirements file, it respects any environment markers the file may contain
+* Updated recommended versions of html5lib and ipython
+* Improved organization of requirements file checks
+
 1.6.1 (2015-07-02)
 ------------------
 * Updated recommended versions of pip, py, setuptools, sbo-sphinx, and

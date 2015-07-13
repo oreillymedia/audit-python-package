@@ -13,8 +13,10 @@ from __future__ import unicode_literals
 import os
 import re
 from subprocess import CalledProcessError, check_output, STDOUT
-
-import mock
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 from audit_python_package.command_line import (
     get_branch_name,
