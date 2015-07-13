@@ -48,3 +48,9 @@ def test_pip_installation(clean_up_requirements):
     """requirements/clean_up_requirements.py should install the correct pip version"""
     assert "match = re.search(r'^pip==([\d\.]+)$', requirements, re.MULTILINE)" in clean_up_requirements
     assert "os.system('pip install pip=={}'.format(match.group(1)))" in clean_up_requirements
+
+
+def test_python_3_support(clean_up_requirements):
+    """requirements/clean_up_requirements.py should cleanly uninstall former dependencies under Python 3"""
+    # No e.message in Python 3
+    assert "if 'not installed' in str(e):" in clean_up_requirements
