@@ -16,7 +16,7 @@ version = '1.6.2'  # Don't forget to update docs/CHANGELOG.rst if you increment 
 install_requires = [
     'future',
     'pytest-cov',
-    'requires.io==0.2.4'
+    'requires.io==0.2.5'
 ]
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
