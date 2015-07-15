@@ -6,7 +6,7 @@
 six==1.9.0
 
 # readme -> bleach
-html5lib==0.99999
+html5lib==0.999999
 
 # readme
 bleach==1.4.1

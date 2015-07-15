@@ -36,7 +36,7 @@ if __name__ == '__main__':
             req.uninstall(auto_confirm=True)
             print('Uninstalled {}'.format(req.name))
         except UninstallationError as e:
-            if 'not installed' in e.message:
+            if 'not installed' in str(e):
                 # Good, the whole point was that we don't want it installed
                 pass
             else:

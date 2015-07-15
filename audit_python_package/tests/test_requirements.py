@@ -11,13 +11,13 @@ import pytest
 from audit_python_package import VERSIONS, get_file_lines, get_requirement_lines
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='class')
 def base():
     """Parsed lines from requirements/base.txt"""
     return get_requirement_lines(os.path.join('requirements', 'base.txt'))
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='class')
 def documentation():
     """Parsed lines from requirements/documentation.txt"""
     path = os.path.join('requirements', 'documentation.txt')
@@ -27,13 +27,13 @@ def documentation():
     return get_requirement_lines(path)
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='class')
 def tests():
     """Parsed lines from requirements/tests.txt"""
     return get_requirement_lines(os.path.join('requirements', 'tests.txt'))
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='class')
 def uninstall():
     """Parsed lines from requirements/uninstall.txt"""
     return get_file_lines(os.path.join('requirements', 'uninstall.txt'))
@@ -49,10 +49,10 @@ def check_version(requirements, package_name, dependencies_set=None):
             assert any([entry.startswith('{}=='.format(dependency)) for entry in requirements[:index]])
 
 
-class TestRequirements(object):
-    """Tests involving requirements files"""
+class TestBaseRequirements(object):
+    """Tests involving the base requirements file"""
 
-    def test_base_exists(self):
+    def test_exists(self):
         """There should be a requirements/base.txt file for core dependencies"""
         assert os.path.exists(os.path.join('requirements', 'base.txt'))
 
@@ -73,7 +73,11 @@ class TestRequirements(object):
             if package_name in VERSIONS:
                 assert version == VERSIONS[package_name]
 
-    def test_documentation_exists(self):
+
+class TestDocumentationRequirements(object):
+    """Tests involving the documentation requirements file"""
+
+    def test_exists(self):
         """There should be a requirements/documentation.txt file for doc building dependencies"""
         assert os.path.exists(os.path.join('requirements', 'documentation.txt'))
 
@@ -141,7 +145,11 @@ class TestRequirements(object):
         """Sphinx should be pinned to our currently preferred version and appear after Babel, docutils, Jinja2, Pygments, six, and snowballstemmer"""
         check_version(documentation, 'Sphinx', {'Babel', 'docutils', 'Jinja2', 'Pygments', 'six', 'snowballstemmer'})
 
-    def test_tests_exists(self):
+
+class TestTestingRequirements(object):
+    """Tests involving the testing requirements file"""
+
+    def test_exists(self):
         """There should be a requirements/tests.txt file for testing dependencies"""
         assert os.path.exists(os.path.join('requirements', 'tests.txt'))
 
@@ -193,22 +201,29 @@ class TestRequirements(object):
         """virtualenv should be pinned to our currently preferred version"""
         check_version(tests, 'virtualenv')
 
-    def test_uninstall_exists(self):
+
+class TestUninstallRequirements(object):
+    """Tests involving the list of former requirements to uninstall"""
+
+    def test_exists(self):
         """There should be a requirements/uninstall.txt file for listing previous dependencies to uninstall"""
         assert os.path.exists(os.path.join('requirements', 'uninstall.txt'))
 
-    def test_uninstall_explanation(self, uninstall):
+    def test_explanation(self, uninstall):
         """requirements/uninstall.txt should include a comment explaining its usage"""
         assert uninstall[0] == '# Packages which were once dependencies, but should now be removed if present.'
 
-    def test_cpython2_does_not_exist(self):
-        """There should not be a requirements/cpython2.txt file, use environment markers instead"""
-        assert not os.path.exists(os.path.join('requirements', 'cpython2.txt'))
 
-    def test_cpython3_does_not_exist(self):
-        """There should not be a requirements/cpython3.txt file, use environment markers instead"""
-        assert not os.path.exists(os.path.join('requirements', 'cpython3.txt'))
+def test_cpython2_does_not_exist():
+    """There should not be a requirements/cpython2.txt file, use environment markers instead"""
+    assert not os.path.exists(os.path.join('requirements', 'cpython2.txt'))
 
-    def test_pypy_does_not_exist(self):
-        """There should not be a requirements/pypy.txt file, use environment markers instead"""
-        assert not os.path.exists(os.path.join('requirements', 'pypy.txt'))
+
+def test_cpython3_does_not_exist():
+    """There should not be a requirements/cpython3.txt file, use environment markers instead"""
+    assert not os.path.exists(os.path.join('requirements', 'cpython3.txt'))
+
+
+def test_pypy_does_not_exist():
+    """There should not be a requirements/pypy.txt file, use environment markers instead"""
+    assert not os.path.exists(os.path.join('requirements', 'pypy.txt'))

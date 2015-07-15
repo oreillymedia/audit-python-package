@@ -17,4 +17,4 @@ future==0.14.3
 # For uploading requirements files to requires.io for analysis;
 # also update in setup.py if upgraded (we only want specific versions we've
 # audited to make sure they don't upload anything inappropriate)
-requires.io==0.2.4
+requires.io==0.2.5

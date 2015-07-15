@@ -11,12 +11,12 @@ import codecs
 import os
 from setuptools import find_packages, setup
 
-version = '1.6.1'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '1.6.2'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 install_requires = [
     'future',
     'pytest-cov',
-    'requires.io==0.2.4'
+    'requires.io==0.2.5'
 ]
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
@@ -29,7 +29,7 @@ if on_rtd:
     requirements_path = os.path.join(root_dir, 'requirements', 'documentation.txt')
     finder = PackageFinder([], [], session=session)
     requirements = parse_requirements(requirements_path, finder, session=session)
-    install_requires.extend([str(r.req) for r in requirements])
+    install_requires.extend([str(r.req) for r in requirements if r.match_markers()])
 
 with codecs.open('README.rst', 'r', 'utf-8') as f:
     long_description = f.read()

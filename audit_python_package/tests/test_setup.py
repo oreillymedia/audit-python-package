@@ -29,6 +29,11 @@ class TestSetup(object):
         """There should be a reminder in setup.py to update docs/CHANGELOG.rst when the version changes"""
         assert 'docs/CHANGELOG.rst' in setup
 
+    def test_environment_markers(self, setup):
+        """If install_requires is derived from a requirements file, it should respect environment markers"""
+        if 'parse_requirements' in setup:
+            assert '.match_markers()' in setup
+
     def test_include_package_data(self, setup):
         """include_package_data should be set to True in setup.py (to let MANIFEST.in define the data to include)"""
         assert 'include_package_data=True' in setup
