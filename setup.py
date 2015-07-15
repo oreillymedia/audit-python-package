@@ -29,7 +29,7 @@ if on_rtd:
     requirements_path = os.path.join(root_dir, 'requirements', 'documentation.txt')
     finder = PackageFinder([], [], session=session)
     requirements = parse_requirements(requirements_path, finder, session=session)
-    install_requires.extend([str(r.req) for r in requirements])
+    install_requires.extend([str(r.req) for r in requirements if r.match_markers()])
 
 with codecs.open('README.rst', 'r', 'utf-8') as f:
     long_description = f.read()

@@ -31,8 +31,8 @@ class TestSetup(object):
 
     def test_environment_markers(self, setup):
         """If install_requires is derived from a requirements file, it should respect environment markers"""
-        if 'r.name for r in' in setup:
-            assert ' if r.match_markers()' in setup
+        if 'parse_requirements' in setup:
+            assert '.match_markers()' in setup
 
     def test_include_package_data(self, setup):
         """include_package_data should be set to True in setup.py (to let MANIFEST.in define the data to include)"""

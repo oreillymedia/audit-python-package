@@ -53,4 +53,4 @@ def test_pip_installation(clean_up_requirements):
 def test_python_3_support(clean_up_requirements):
     """requirements/clean_up_requirements.py should cleanly uninstall former dependencies under Python 3"""
     # No e.message in Python 3
-    assert "if 'not installed' in str(e):" in clean_up_requirements
+    assert 'e.message' not in clean_up_requirements
