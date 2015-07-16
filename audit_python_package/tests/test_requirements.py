@@ -34,6 +34,12 @@ def tests():
 
 
 @pytest.fixture(scope='class')
+def tox():
+    """Parsed lines from requirements/tox.txt"""
+    return get_requirement_lines(os.path.join('requirements', 'tox.txt'))
+
+
+@pytest.fixture(scope='class')
 def uninstall():
     """Parsed lines from requirements/uninstall.txt"""
     return get_file_lines(os.path.join('requirements', 'uninstall.txt'))
@@ -169,10 +175,6 @@ class TestTestingRequirements(object):
         """py should be pinned to our currently preferred version"""
         check_version(tests, 'py')
 
-    def test_pluggy_version(self, tests):
-        """pluggy should be pinned to our currently preferred version"""
-        check_version(tests, 'pluggy')
-
     def test_pytest_version(self, tests):
         """pytest should be pinned to our currently preferred version and appear after py"""
         check_version(tests, 'pytest', {'py'})
@@ -193,13 +195,29 @@ class TestTestingRequirements(object):
         """pytest-catchlog should be pinned to our currently preferred version and appear after pytest"""
         check_version(tests, 'pytest-catchlog', {'pytest'})
 
-    def test_tox_version(self, tests):
-        """tox should be pinned to our currently preferred version and appear after pluggy, py, and virtualenv"""
-        check_version(tests, 'tox', {'pluggy', 'py', 'virtualenv'})
 
-    def test_virtualenv_version(self, tests):
+class TestToxRequirements(object):
+    """Tests involving the tox requirements file"""
+
+    def test_exists(self):
+        """There should be a requirements/tox.txt file for tox dependencies"""
+        assert os.path.exists(os.path.join('requirements', 'tox.txt'))
+
+    def test_py_version(self, tox):
+        """py should be pinned to our currently preferred version"""
+        check_version(tox, 'py')
+
+    def test_pluggy_version(self, tox):
+        """pluggy should be pinned to our currently preferred version"""
+        check_version(tox, 'pluggy')
+
+    def test_tox_version(self, tox):
+        """tox should be pinned to our currently preferred version and appear after pluggy, py, and virtualenv"""
+        check_version(tox, 'tox', {'pluggy', 'py', 'virtualenv'})
+
+    def test_virtualenv_version(self, tox):
         """virtualenv should be pinned to our currently preferred version"""
-        check_version(tests, 'virtualenv')
+        check_version(tox, 'virtualenv')
 
 
 class TestUninstallRequirements(object):

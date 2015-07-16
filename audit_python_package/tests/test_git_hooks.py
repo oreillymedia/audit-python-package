@@ -71,6 +71,10 @@ class TestGitHooks(object):
         """git-hooks/post-merge should install the additional dependencies needed to run tests"""
         assert re.search(r'pip [^"\']*install [^"\']*--requirement requirements/tests.txt', post_merge)
 
+    def test_post_merge_tox_dependencies(self, post_merge):
+        """git-hooks/post-merge should install the additional dependencies needed to run tox"""
+        assert re.search(r'pip [^"\']*install [^"\']*--requirement requirements/tox.txt', post_merge)
+
     def test_post_merge_installs_package(self, post_merge):
         """git-hooks/post-merge should install the package contained in the git repository"""
         assert re.search(r'pip [^"\']*install [^"\']*--editable ./', post_merge)
