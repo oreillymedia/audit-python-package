@@ -22,10 +22,6 @@ pytest==2.7.2
 # pytest-cov
 cov-core==1.15.0
 
-# tox
-pluggy==0.3.0
-virtualenv==13.1.0
-
 # And then the direct dependencies:
 
 # A better debugger
@@ -39,6 +35,3 @@ pytest-catchlog==1.1
 
 # For code coverage statistics generation
 pytest-cov==1.8.1
-
-# For managing test environments
-tox==2.1.1

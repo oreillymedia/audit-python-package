@@ -39,5 +39,6 @@ if virtual_env:
 
     os.system('requirements/clean_up_requirements.py')
     os.system("pip install --disable-pip-version-check --requirement requirements/base.txt")
+    os.system("pip install --disable-pip-version-check --requirement requirements/tox.txt")
     os.system("pip install --disable-pip-version-check --requirement requirements/tests.txt")
     os.system("pip install --disable-pip-version-check --editable ./")

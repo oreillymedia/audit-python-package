@@ -1,0 +1,10 @@
+# Packages needed in order to run tox.
+# Installed by Jenkins and dev environments.
+
+# tox dependencies
+pluggy==0.3.0
+py==1.4.30
+virtualenv==13.1.0
+
+# For managing test environments
+tox==2.1.1
