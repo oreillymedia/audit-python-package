@@ -1,6 +1,13 @@
 audit-python-package Changelog
 ==============================
 
+1.6.3 (2015-07-16)
+------------------
+Updated checks to encourage usage of a ``requirements/tox.txt`` file for tox
+and its dependencies, instead of keeping them in ``requirements/tests.txt``.
+This makes it easier to keep dependencies current in Jenkins or Travis jobs
+without constantly going back to edit the job configuration.
+
 1.6.2 (2015-07-15)
 ------------------
 * Check to makes sure that if setup.py's install_requires is derived from a
