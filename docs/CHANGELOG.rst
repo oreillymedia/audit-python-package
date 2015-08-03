@@ -1,6 +1,10 @@
 audit-python-package Changelog
 ==============================
 
+1.6.4 (2015-08-03)
+------------------
+Updated recommended versions of Babel, Jinja2, and pytest-cov.
+
 1.6.3 (2015-07-16)
 ------------------
 Updated checks to encourage usage of a ``requirements/tox.txt`` file for tox
