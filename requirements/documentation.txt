@@ -39,7 +39,7 @@ sphinx_rtd_theme==0.1.8
 # Direct dependencies
 
 # The README parser used by PyPI, used to validate README.rst
-readme==0.5.1
+readme==0.6.0
 
 # Utilities for managing technical documentation
 sbo-sphinx==2.1.1

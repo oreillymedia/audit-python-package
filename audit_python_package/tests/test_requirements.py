@@ -159,6 +159,14 @@ class TestTestingRequirements(object):
         """There should be a requirements/tests.txt file for testing dependencies"""
         assert os.path.exists(os.path.join('requirements', 'tests.txt'))
 
+    def test_appnope_version(self, tests):
+        """appnope should be pinned to our currently preferred version"""
+        check_version(tests, 'appnope')
+
+    def test_decorator_version(self, tests):
+        """decorator should be pinned to our currently preferred version"""
+        check_version(tests, 'decorator')
+
     def test_gnureadline_version(self, tests):
         """gnureadline should be pinned to our currently preferred version"""
         check_version(tests, 'gnureadline')
@@ -169,7 +177,23 @@ class TestTestingRequirements(object):
 
     def test_ipython_version(self, tests):
         """ipython should be pinned to our currently preferred version and appear after gnureadline"""
-        check_version(tests, 'ipython', {'gnureadline'})
+        check_version(tests, 'ipython', {'appnope', 'gnureadline', 'pexpect', 'pickleshare', 'simplegeneric', 'traitlets'})
+
+    def test_ipython_genutils_version(self, tests):
+        """ipython-genutils should be pinned to our currently preferred version"""
+        check_version(tests, 'ipython-genutils')
+
+    def test_path_py_version(self, tests):
+        """path.py should be pinned to our currently preferred version"""
+        check_version(tests, 'path.py')
+
+    def test_pexpect_version(self, tests):
+        """pexpect should be pinned to our currently preferred version"""
+        check_version(tests, 'pexpect')
+
+    def test_pickleshare_version(self, tests):
+        """pickleshare should be pinned to our currently preferred version and appear after path.py"""
+        check_version(tests, 'pickleshare', {'path.py'})
 
     def test_py_version(self, tests):
         """py should be pinned to our currently preferred version"""
@@ -194,6 +218,14 @@ class TestTestingRequirements(object):
     def test_pytest_catchlog_version(self, tests):
         """pytest-catchlog should be pinned to our currently preferred version and appear after pytest"""
         check_version(tests, 'pytest-catchlog', {'pytest'})
+
+    def test_simplegeneric_version(self, tests):
+        """simplegeneric should be pinned to our currently preferred version"""
+        check_version(tests, 'simplegeneric')
+
+    def test_traitlets_version(self, tests):
+        """traitlets should be pinned to our currently preferred version and appear after decorator and ipython-genutils"""
+        check_version(tests, 'traitlets', {'decorator', 'ipython-genutils'})
 
 
 class TestToxRequirements(object):

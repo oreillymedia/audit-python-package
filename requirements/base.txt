@@ -1,8 +1,8 @@
 # Core dependencies common to all Python interpreters
 
 # Python packaging utilities
-setuptools==18.0.1
-pip==7.1.0
+setuptools==18.2
+pip==7.1.2
 
 # Indirect dependencies first, exact versions for consistency
 

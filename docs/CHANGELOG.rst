@@ -1,6 +1,13 @@
 audit-python-package Changelog
 ==============================
 
+1.6.5 (2015-08-27)
+------------------
+* Updated recommended versions of ipython, pip, pytest-cov readme, setuptools,
+  and virtualenv.
+* Added tests for new dependencies of ipython 4.0.0: appnope, decorator,
+  ipython-genutils, path.py, pexpect, pickleshare, simplegeneric, and traitlets
+
 1.6.4 (2015-08-03)
 ------------------
 Updated recommended versions of Babel, Jinja2, and pytest-cov.

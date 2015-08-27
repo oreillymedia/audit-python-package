@@ -4,7 +4,7 @@
 # tox dependencies
 pluggy==0.3.0
 py==1.4.30
-virtualenv==13.1.0
+virtualenv==13.1.2
 
 # For managing test environments
 tox==2.1.1
