@@ -1,7 +1,7 @@
 # First the indirect dependencies:
 
 # ipdb -> ipython -> pickleshare
-path.py==8.0
+path.py==8.1
 
 # ipdb -> ipython -> traitlets
 decorator==4.0.2
