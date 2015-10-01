@@ -1,6 +1,13 @@
 audit-python-package Changelog
 ==============================
 
+1.6.6 (2015-10-01)
+------------------
+* Updated recommended versions of Babel, bleach, coverage, decorator, html5lib,
+  path.py, pluggy, pytest, pytz, setuptools, sbo-sphinx, and sphinx_rtd_theme
+* Added .cache directory to .gitignore recommendations to accommodate
+  coverage 4.0
+
 1.6.5 (2015-08-27)
 ------------------
 * Updated recommended versions of ipython, pip, pytest-cov readme, setuptools,
