@@ -1,7 +1,7 @@
 # Core dependencies common to all Python interpreters
 
 # Python packaging utilities
-setuptools==18.2
+setuptools==18.3.2
 pip==7.1.2
 
 # Indirect dependencies first, exact versions for consistency
@@ -12,7 +12,7 @@ requests==2.7.0
 # And now the direct dependencies
 
 # For Python 2 & 3 compatibility
-future==0.15.0
+future==0.15.2
 
 # For uploading requirements files to requires.io for analysis;
 # also update in setup.py if upgraded (we only want specific versions we've

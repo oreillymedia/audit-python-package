@@ -2,7 +2,7 @@
 # Installed by Jenkins and dev environments.
 
 # tox dependencies
-pluggy==0.3.0
+pluggy==0.3.1
 py==1.4.30
 virtualenv==13.1.2
 
