@@ -3,7 +3,7 @@
 # Indirect dependencies to pin for consistency
 
 # readme -> bleach -> html5lib, Sphinx
-six==1.9.0
+six==1.10.0
 
 # readme -> bleach
 html5lib==0.9999999

@@ -1,6 +1,12 @@
 audit-python-package Changelog
 ==============================
 
+1.6.7 (2015-10-09)
+------------------
+* Updated recommended versions of path.py, pytest, pytest-cov, and six.
+* Expanded docstrings to better explain the reasoning behind the packaging
+  tests.
+
 1.6.6 (2015-10-01)
 ------------------
 * Updated recommended versions of Babel, bleach, coverage, decorator, html5lib,

@@ -8,7 +8,11 @@ import os
 
 
 class TestReadme(object):
-    """Tests of the main README.rst file"""
+    """
+    Tests of the main README.rst file.  This file is included in Sphinx
+    documentation builds, appears on the repository's main page in GitHub, and
+    serves as the long description of the package when uploaded to PyPI.
+    """
 
     def test_exists(self):
         """There should be a README.rst in the root directory"""

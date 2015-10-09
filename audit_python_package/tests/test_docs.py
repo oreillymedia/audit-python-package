@@ -24,7 +24,18 @@ def index():
 
 
 class TestDocs(object):
-    """Tests of the "docs" folder for documentation"""
+    """
+    Tests of the "docs" folder for documentation.  This is the usual location
+    of easy-to-edit text documentation files to be converted by Sphinx into
+    easier-to-read-and-search documentation in HTML, EPUB, PDF, or other
+    formats.  There are other ways to write documentation, but this one is by
+    far the most common and well understood in the Python community.
+
+    These tests additionally recommend use of the sbo-sphinx library, which
+    simplifies the conf.py module and makes it possible to auto-generate
+    Python API documentation from the source code during Read the Docs
+    documentation builds (among other benefits).
+    """
 
     def test_conf_exists(self):
         """There should be a docs/conf.py file with basic configuration info for the docs"""

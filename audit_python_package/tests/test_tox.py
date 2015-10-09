@@ -35,7 +35,11 @@ def testenv_commands(tox_ini):
 
 
 class TestTox(object):
-    """Checks related to tox.ini"""
+    """
+    Checks related to tox.ini.  This is the configuration file for tox, which
+    is used to isolate dependencies for various tasks and test configurations.
+    It also contains some configuration for pytest, a popular test runner.
+    """
 
     def test_tox_ini_exists(self):
         """There should be a tox.ini in the project's root directory"""

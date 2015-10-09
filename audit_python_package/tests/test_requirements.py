@@ -2,6 +2,13 @@
 # Created by Jeremy Bowman on Thu Apr 23 10:36:32 EDT 2015
 # Copyright (c) 2015 Safari Books Online. All rights reserved.
 
+"""
+Tests of the pip requirements files in the requirements directory.  The
+requirements files are split into different files because some of them are
+installed only under particular circumstances, as described for the tests of
+each file.
+"""
+
 from __future__ import unicode_literals
 
 import os
@@ -56,7 +63,11 @@ def check_version(requirements, package_name, dependencies_set=None):
 
 
 class TestBaseRequirements(object):
-    """Tests involving the base requirements file"""
+    """
+    Tests involving the base requirements file.  These packages must be
+    installed wherever the package itself is.  The file should specify exact
+    versions for testing purposes (or for reliable deployment of a service).
+    """
 
     def test_exists(self):
         """There should be a requirements/base.txt file for core dependencies"""
@@ -81,7 +92,11 @@ class TestBaseRequirements(object):
 
 
 class TestDocumentationRequirements(object):
-    """Tests involving the documentation requirements file"""
+    """
+    Tests involving the documentation requirements file.  These are the
+    packages that must be installed in order to use Sphinx to build the
+    documentation.
+    """
 
     def test_exists(self):
         """There should be a requirements/documentation.txt file for doc building dependencies"""
@@ -153,7 +168,10 @@ class TestDocumentationRequirements(object):
 
 
 class TestTestingRequirements(object):
-    """Tests involving the testing requirements file"""
+    """
+    Tests involving the testing requirements file.  These are additional
+    requirements needed only when running the package's test suite.
+    """
 
     def test_exists(self):
         """There should be a requirements/tests.txt file for testing dependencies"""
@@ -229,7 +247,12 @@ class TestTestingRequirements(object):
 
 
 class TestToxRequirements(object):
-    """Tests involving the tox requirements file"""
+    """
+    Tests involving the tox requirements file.  These are just the core
+    requirements for running tox, which in turn manages creation of one or
+    more virtualenvs containing the package's dependencies.  Primarily used
+    by Jenkins, Travis, or other continuous integration tools.
+    """
 
     def test_exists(self):
         """There should be a requirements/tox.txt file for tox dependencies"""
@@ -253,7 +276,12 @@ class TestToxRequirements(object):
 
 
 class TestUninstallRequirements(object):
-    """Tests involving the list of former requirements to uninstall"""
+    """
+    Tests involving the list of former requirements to uninstall.  This file
+    lists the names of packages that should be uninstalled if present (usually
+    because they were once dependencies of the package, but are now no longer
+    needed and perhaps even conflict with the package's current dependencies).
+    """
 
     def test_exists(self):
         """There should be a requirements/uninstall.txt file for listing previous dependencies to uninstall"""
