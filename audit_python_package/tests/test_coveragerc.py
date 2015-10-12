@@ -18,7 +18,13 @@ def coveragerc():
 
 
 class TestCoveragerc(object):
-    """Tests for the .coveragerc coverage module configuration file"""
+    """
+    Tests for the .coveragerc coverage module configuration file.  We exclude
+    test files from the coverage.py code coverage report because their
+    presence makes it hard to scan the report to see the results for the
+    actual implementation code, which we care much more about.  For Django
+    projects, it's usually a good idea to omit migrations as well.
+    """
 
     def test_exists(self):
         """There should be a .coveragerc file in the root directory"""

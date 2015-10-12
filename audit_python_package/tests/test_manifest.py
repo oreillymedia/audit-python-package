@@ -18,7 +18,11 @@ def manifest():
 
 
 class TestManifest(object):
-    """Tests related to the MANIFEST.in file"""
+    """
+    Tests related to the MANIFEST.in file.  Configuring this file correctly is
+    the best way to create a package that builds cleanly as both a wheel and
+    a source distribution.
+    """
 
     def test_exists(self):
         """There should be a MANIFEST.in file in the project's root directory"""

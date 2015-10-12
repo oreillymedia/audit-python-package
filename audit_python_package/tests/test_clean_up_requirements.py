@@ -2,7 +2,22 @@
 # Created by Jeremy Bowman on Fri Jun  5 11:03:28 EDT 2015
 # Copyright (c) 2015 Safari Books Online. All rights reserved.
 
-"""Tests related to the requirements/clean_up_requirements.py script"""
+"""
+Tests related to the requirements/clean_up_requirements.py script.  This
+script exists primarily so that setuptools and pip can be updated to the
+desired versions before using them to parse requirements files which may be
+using features that the old versions don't support.  (The older versions also
+may be lacking some of the command line options needed to correctly install
+packages from private repositories, etc.)
+
+The script also uninstalls packages listed in requirements/uninstall.txt
+before installing new dependencies, because some upgrades require the old
+package to be uninstalled before the new one can be cleanly installed (for
+example, PIL -> Pillow or py-bcrypt -> bcrypt).  We can't just use
+``pip uninstall -r requirements/uninstall.txt`` for this because it aborts
+after finding one package in the list which has already been uninstalled,
+ignoring the rest of the list.
+"""
 
 from __future__ import unicode_literals
 
