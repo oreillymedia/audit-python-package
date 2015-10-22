@@ -3,7 +3,7 @@ appnope==0.1.0
 Babel==2.1.1
 bleach==1.4.2
 cov-core==1.15.0
-coverage==4.0
+coverage==4.0.1
 decorator==4.0.4
 docutils==0.12
 gnureadline==6.3.3

@@ -7,7 +7,7 @@ pip==7.1.2
 # Indirect dependencies first, exact versions for consistency
 
 # requires.io
-requests==2.8.0
+requests==2.8.1
 
 # And now the direct dependencies
 

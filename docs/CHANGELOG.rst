@@ -1,6 +1,10 @@
 audit-python-package Changelog
 ==============================
 
+1.6.8 (2015-10-22)
+------------------
+Updated recommended versions of coverage and requests.
+
 1.6.7 (2015-10-09)
 ------------------
 * Updated recommended versions of path.py, pytest, pytest-cov, setuptools, and
