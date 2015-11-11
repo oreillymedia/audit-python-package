@@ -16,7 +16,7 @@ docutils==0.12
 Pygments==2.0.2
 
 # Sphinx -> Babel
-pytz==2015.6
+pytz==2015.7
 
 # sbo-sphinx -> Sphinx -> Jinja2
 MarkupSafe==0.23

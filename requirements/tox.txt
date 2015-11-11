@@ -7,4 +7,4 @@ py==1.4.30
 virtualenv==13.1.2
 
 # For managing test environments
-tox==2.1.1
+tox==2.2.0

@@ -53,8 +53,8 @@ class TestTox(object):
         """There should be no downloadcache line in tox.ini (it's deprecated)"""
         assert not tox_ini.has_option('tox', 'downloadcache')
 
-    def test_python_34(self, tox_ini):
-        """Python 3.4 should be among the tested configurations"""
+    def test_python_35(self, tox_ini):
+        """Python 3.5 should be among the tested configurations"""
         assert tox_ini.has_option('tox', 'envlist')
         assert '34' in tox_ini.get('tox', 'envlist')
 

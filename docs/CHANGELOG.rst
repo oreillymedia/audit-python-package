@@ -1,6 +1,12 @@
 audit-python-package Changelog
 ==============================
 
+1.6.9 (2015-11-11)
+------------------
+* Updated recommended versions of coverage, pytest-catchlog, pytz, setuptools,
+  and tox
+* Check for a Python 3.5 test environment in tox.ini instead of 3.4
+
 1.6.8 (2015-10-22)
 ------------------
 Updated recommended versions of coverage and requests.
