@@ -6,13 +6,24 @@ pip==7.1.2
 
 # Indirect dependencies first, exact versions for consistency
 
+# readme -> bleach -> html5lib
+six==1.10.0
+
+# readme -> bleach
+html5lib==0.9999999
+
+# readme
+bleach==1.4.2
+docutils==0.12
+Pygments==2.0.2
+
 # requires.io
 requests==2.8.1
 
 # And now the direct dependencies
 
-# For Python 2 & 3 compatibility
-future==0.15.2
+# The README parser used by PyPI, used to validate README.rst
+readme==0.6.0
 
 # For uploading requirements files to requires.io for analysis;
 # also update in setup.py if upgraded (we only want specific versions we've

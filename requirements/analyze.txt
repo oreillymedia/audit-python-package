@@ -1,0 +1,12 @@
+# Dependencies for static analysis
+
+# Indirect dependencies first, exact versions for consistency
+
+# flake8
+mccabe==0.3.1
+pep8==1.6.2
+pyflakes==1.0.0
+
+# And now the direct dependencies
+
+flake8==2.5.0

@@ -11,11 +11,11 @@ import codecs
 import os
 from setuptools import find_packages, setup
 
-version = '1.6.9'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '1.7.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 install_requires = [
-    'future',
     'pytest-cov',
+    'readme',
     'requires.io==0.2.5'
 ]
 
@@ -40,16 +40,18 @@ setup(
     author='Jeremy Bowman',
     author_email='jbowman@safaribooksonline.com',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Private :: Do Not Upload',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-        'Topic :: Software Development',
+        'Programming Language :: Python :: 3.5',
+        'Topic :: Software Development :: Testing',
     ],
     description='Checks for compliance with current Python packaging best practices',
     long_description=long_description,
