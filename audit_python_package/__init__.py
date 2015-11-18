@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 import codecs
-from configparser import ConfigParser
+from six.moves.configparser import ConfigParser
 import os
 
 DATA_DIRECTORY_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data'))

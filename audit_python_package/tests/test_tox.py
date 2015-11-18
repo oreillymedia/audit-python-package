@@ -56,7 +56,7 @@ class TestTox(object):
     def test_python_35(self, tox_ini):
         """Python 3.5 should be among the tested configurations"""
         assert tox_ini.has_option('tox', 'envlist')
-        assert '34' in tox_ini.get('tox', 'envlist')
+        assert '35' in tox_ini.get('tox', 'envlist')
 
     def test_pytest_section_exists(self, tox_ini):
         assert tox_ini.has_section('pytest')

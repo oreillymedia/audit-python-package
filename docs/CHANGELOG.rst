@@ -1,6 +1,14 @@
 audit-python-package Changelog
 ==============================
 
+1.7.0 (2015-11-18)
+------------------
+* Added "readme" as a dependency (for PyPI description validation)
+* Removed dependency on "future", since "six" is smaller and was needed for
+  "readme" anyway
+* Updated the recommended version of tox again for a bugfix release
+* Fixed a bug in the Python 3.5 test environment check
+
 1.6.9 (2015-11-11)
 ------------------
 * Updated recommended versions of coverage, pytest-catchlog, pytz, setuptools,
