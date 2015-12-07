@@ -1,6 +1,11 @@
 audit-python-package Changelog
 ==============================
 
+1.7.1 (2015-12-07)
+------------------
+* Updated recommended versions of coverage, ipython, py, pytest, setuptools,
+  and Sphinx
+
 1.7.0 (2015-11-18)
 ------------------
 * Added "readme" as a dependency (for PyPI description validation)
