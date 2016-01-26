@@ -142,9 +142,9 @@ class TestDocumentationRequirements(object):
         """pytz should be pinned to our currently preferred version"""
         check_version(documentation, 'pytz')
 
-    def test_readme_version(self, documentation):
-        """readme should be pinned to our currently preferred version and appear after bleach, docutils, Pygments, and six"""
-        check_version(documentation, 'readme', {'bleach', 'docutils', 'Pygments', 'six'})
+    def test_readme_renderer_version(self, documentation):
+        """readme_renderer should be pinned to our currently preferred version and appear after bleach, docutils, Pygments, and six"""
+        check_version(documentation, 'readme_renderer', {'bleach', 'docutils', 'Pygments', 'six'})
 
     def test_sbo_sphinx_version(self, documentation):
         """sbo-sphinx should be pinned to our currently preferred version and appear after Sphinx"""

@@ -11,7 +11,7 @@ import codecs
 import os
 from setuptools import find_packages, setup
 
-version = '1.7.1'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '1.7.2'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 install_requires = [
     'pytest-cov',

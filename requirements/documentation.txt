@@ -13,7 +13,7 @@ bleach==1.4.2
 
 # readme, Sphinx
 docutils==0.12
-Pygments==2.0.2
+Pygments==2.1
 
 # Sphinx -> Babel
 pytz==2015.7
@@ -25,21 +25,21 @@ MarkupSafe==0.23
 PyStemmer==1.3.0
 
 # sbo-sphinx-> Sphinx
-Babel==2.1.1
+Babel==2.2.0
 Jinja2==2.8
-snowballstemmer==1.2.0
+snowballstemmer==1.2.1
 
 # sbo-sphinx
-Sphinx==1.3.3
+Sphinx==1.3.5
 
 # Sphinx themes (circular dependencies of Sphinx)
-alabaster==0.7.6
+alabaster==0.7.7
 sphinx_rtd_theme==0.1.9
 
 # Direct dependencies
 
 # The README parser used by PyPI, used to validate README.rst
-readme==0.6.0
+readme_renderer==0.7.0
 
 # Utilities for managing technical documentation
 sbo-sphinx==2.2.0

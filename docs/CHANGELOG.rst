@@ -1,6 +1,15 @@
 audit-python-package Changelog
 ==============================
 
+1.7.2 (2016-01-26)
+------------------
+* Accommodate the `readme` -> `readme_renderer` package rename
+* Updated recommended versions of alabaster, Babel, decorator, ipython,
+  pickleshare, pip, Pygments, pytest, pytest-catchlog, setuptools,
+  snowballstemmer, Sphinx, tox, traitlets, and virtualenv.  Note that the
+  pip upgrade may require some parameter changes if installing packages from
+  private package indexes.
+
 1.7.1 (2015-12-07)
 ------------------
 * Updated recommended versions of coverage, ipython, py, pytest, setuptools,
