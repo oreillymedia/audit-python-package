@@ -53,14 +53,14 @@ class TestSetup(object):
         """There should be an invalid "Private :: Do Not Upload" classifier in private packages to prevent accidental uploads to PyPI"""
         assert 'Private :: Do Not Upload' in setup
 
-    def test_read_the_docs(self, setup):
-        """There should be explicit support for Read the Docs builds in setup.py"""
-        assert 'READTHEDOCS' in setup
-        assert 'documentation.txt' in setup
+    def test_no_read_the_docs_section(self, setup):
+        """There should not be explicit support for Read the Docs builds in setup.py (specify a requirements file for the virtualenv in the Read the Docs configuration instead)"""
+        assert 'READTHEDOCS' not in setup
+        assert 'documentation.txt' not in setup
 
     def test_multiple_pip_versions(self, setup):
         """setup.py should work with a good variety of pip versions"""
-        assert 'PipSession()' in setup
-        assert ', session=session)' in setup
-        assert 'str(r.req)' in setup
+        if 'parse_requirements' in setup:
+            assert 'PipSession()' in setup
+            assert ', session=session)' in setup
         assert '[r.req' not in setup

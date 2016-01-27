@@ -1,6 +1,14 @@
 audit-python-package Changelog
 ==============================
 
+1.7.3 (2016-01-27)
+------------------
+Reversed the check for explicit inclusion of exact dependency versions for doc
+builds in setup.py; this turned out to be prone to version conflicts between
+different installed packages which all do this.  Instead, you should specify
+a requirements file for the virtualenv in your Read the Docs configuration
+for the project.
+
 1.7.2 (2016-01-26)
 ------------------
 * Accommodate the `readme` -> `readme_renderer` package rename
