@@ -2,21 +2,24 @@
 
 # Indirect dependencies to pin for consistency
 
-# readme -> bleach -> html5lib, Sphinx
+# readme_renderer -> bleach -> html5lib, Sphinx
 six==1.10.0
 
-# readme -> bleach
+# readme_renderer -> bleach
 html5lib==0.9999999
 
-# readme
+# readme_renderer
 bleach==1.4.2
 
-# readme, Sphinx
+# readme_renderer, Sphinx
 docutils==0.12
 Pygments==2.1
 
 # Sphinx -> Babel
 pytz==2015.7
+
+# sbo-sphinx -> recommonmark
+CommonMark==0.5.4
 
 # sbo-sphinx -> Sphinx -> Jinja2
 MarkupSafe==0.23
@@ -30,6 +33,7 @@ Jinja2==2.8
 snowballstemmer==1.2.1
 
 # sbo-sphinx
+recommonmark==0.4.0
 Sphinx==1.3.5
 
 # Sphinx themes (circular dependencies of Sphinx)

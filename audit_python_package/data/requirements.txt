@@ -2,6 +2,7 @@ alabaster==0.7.7
 appnope==0.1.0
 Babel==2.2.0
 bleach==1.4.2
+CommonMark==0.5.4
 cov-core==1.15.0
 coverage==4.0.3
 decorator==4.0.6
@@ -26,6 +27,7 @@ pytest-catchlog==1.2.2
 pytest-cov==2.2.0
 pytz==2015.7
 readme_renderer==0.7.0
+recommonmark==0.4.0
 setuptools==19.6
 sbo-sphinx==2.2.0
 simplegeneric==0.8.1

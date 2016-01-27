@@ -114,6 +114,10 @@ class TestDocumentationRequirements(object):
         """bleach should be pinned to our currently preferred version and appear after html5lib and six"""
         check_version(documentation, 'bleach', {'html5lib', 'six'})
 
+    def test_commonmark_version(self, documentation):
+        """CommonMark should be pinned to our currently preferred version"""
+        check_version(documentation, 'CommonMark')
+
     def test_docutils_version(self, documentation):
         """docutils should be pinned to our currently preferred version"""
         check_version(documentation, 'docutils')
@@ -146,9 +150,13 @@ class TestDocumentationRequirements(object):
         """readme_renderer should be pinned to our currently preferred version and appear after bleach, docutils, Pygments, and six"""
         check_version(documentation, 'readme_renderer', {'bleach', 'docutils', 'Pygments', 'six'})
 
+    def test_recommonmark_version(self, documentation):
+        """recommonmark should be pinned to our currently preferred version and appear after CommonMark and docutils"""
+        check_version(documentation, 'recommonmark', {'docutils', 'CommonMark'})
+
     def test_sbo_sphinx_version(self, documentation):
-        """sbo-sphinx should be pinned to our currently preferred version and appear after Sphinx"""
-        check_version(documentation, 'sbo-sphinx', {'Sphinx'})
+        """sbo-sphinx should be pinned to our currently preferred version and appear after recommonmark and Sphinx"""
+        check_version(documentation, 'sbo-sphinx', {'recommonmark', 'Sphinx'})
 
     def test_six_version(self, documentation):
         """six should be pinned to our currently preferred version"""
