@@ -1,6 +1,10 @@
 audit-python-package Changelog
 ==============================
 
+1.7.4 (2016-01-29)
+------------------
+Updated recommended versions of setuptools and virtualenv
+
 1.7.3 (2016-01-27)
 ------------------
 * Reversed the check for explicit inclusion of exact dependency versions for
