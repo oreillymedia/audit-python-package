@@ -4,23 +4,23 @@
 path.py==8.1.2
 
 # ipdb -> ipython -> traitlets
-decorator==4.0.6
+decorator==4.0.9
 ipython-genutils==0.1.0
 
 # ipdb -> ipython
 appnope==0.1.0; sys_platform == 'darwin'
 gnureadline==6.3.3; sys_platform == 'darwin'
-pexpect==3.3; sys_platform != 'win32'
+pexpect==4.0.1; sys_platform != 'win32'
 pickleshare==0.6
 simplegeneric==0.8.1
 traitlets==4.1.0
 
 # ipdb
-ipython==4.0.3
+ipython==4.1.2
 
 # mock
 funcsigs==0.4; python_version < '3.3'
-pbr==1.3.0; python_version < '3.3'
+pbr==1.8.0; python_version < '3.3'
 
 # pytest-cov -> cov-core
 coverage==4.0.3
@@ -29,7 +29,7 @@ coverage==4.0.3
 py==1.4.31
 
 # pytest-catchlog, pytest-cov
-pytest==2.8.7
+pytest==2.9.0
 
 # pytest-cov
 cov-core==1.15.0
@@ -37,13 +37,13 @@ cov-core==1.15.0
 # And then the direct dependencies:
 
 # A better debugger
-ipdb==0.8.1
+ipdb==0.9.0
 
 # For mocking functions with side effects
-mock==1.1.3; python_version < '3.3'
+mock==1.3.0; python_version < '3.3'
 
 # Show log output for test failures
 pytest-catchlog==1.2.2
 
 # For code coverage statistics generation
-pytest-cov==2.2.0
+pytest-cov==2.2.1

@@ -1,6 +1,11 @@
 audit-python-package Changelog
 ==============================
 
+1.7.5 (2016-03-02)
+------------------
+Updated recommended versions of decorator, ipdb, ipython, pexpect, pip,
+Pygments, pytest, pytest-cov, setuptools, Sphinx, and virtualenv.
+
 1.7.4 (2016-01-29)
 ------------------
 Updated recommended versions of setuptools and virtualenv

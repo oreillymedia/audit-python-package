@@ -10,7 +10,7 @@ from __future__ import unicode_literals
 import codecs
 from setuptools import find_packages, setup
 
-version = '1.7.4'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '1.7.5'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 install_requires = [
     'pytest-cov',
