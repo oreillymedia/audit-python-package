@@ -13,7 +13,7 @@ gnureadline==6.3.3; sys_platform == 'darwin'
 pexpect==4.0.1; sys_platform != 'win32'
 pickleshare==0.6
 simplegeneric==0.8.1
-traitlets==4.1.0
+traitlets==4.2.1
 
 # ipdb
 ipython==4.1.2
@@ -29,7 +29,7 @@ coverage==4.0.3
 py==1.4.31
 
 # pytest-catchlog, pytest-cov
-pytest==2.9.0
+pytest==2.9.1
 
 # pytest-cov
 cov-core==1.15.0

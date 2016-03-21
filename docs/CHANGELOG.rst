@@ -1,6 +1,11 @@
 audit-python-package Changelog
 ==============================
 
+1.7.6 (2016-03-21)
+------------------
+Updated recommended versions of CommonMark, pip, pytest, pytz, setuptools,
+traitlets, and virtualenv.
+
 1.7.5 (2016-03-02)
 ------------------
 Updated recommended versions of decorator, ipdb, ipython, pexpect, pip,
